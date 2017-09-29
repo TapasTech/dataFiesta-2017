@@ -3,4 +3,5 @@ node_modules
 *.lock
 /.idea
 /dist
-/.env
+src/index.html
+src/assets

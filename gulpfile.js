@@ -43,27 +43,36 @@ gulp.task('clean', () => del(DIST));
 gulp.task('scss', () => {
   let outputStyle = isProd ? 'compressed' : 'expanded';
   let stream = gulp.src('src/scss/index.scss')
-    .pipe(plumber(logError))
-    .pipe(sass({outputStyle}))
+    .pipe(plumber(logError));
+  /*if (isProd) {
+    stream = stream
+      .pipe(autoprefixer())
+      .pipe(cssnano())
+  }*/
+  stream.pipe(sass({outputStyle}))
     .on('error', sass.logError)
     .pipe(rename('styles.css'))
     .pipe(gulp.dest('src/assets'))
     .pipe(gulp.dest(DIST + '/assets'));
-  if (!isProd) stream = stream
-    .pipe(browserSync.stream());
+  if (!isProd) {
+    stream = stream
+      .pipe(browserSync.stream());
+  }
   return stream;
 });
 
 gulp.task('js', () => {
   let stream = gulp.src('src/app.js');
-  stream = stream.pipe(rollup(Object.assign({
-    input: 'src/app.js',
-  }, rollupOptions)));
-  if (isProd) stream = stream
-    .pipe(uglify());
+  if (isProd) {
+    stream = stream
+      .pipe(rollup(Object.assign({
+        input: 'src/app.js',
+      }, rollupOptions)))
+      .pipe(uglify());
+  }
   stream = stream
-    .pipe(assetsInjector.collect())
-    .pipe(gulp.dest(DIST));
+    .pipe(gulp.dest(DIST + '/assets'))
+    .pipe(gulp.dest('src/assets'));
   if (!isProd) stream = stream
     .pipe(browserSync.stream());
   return stream;
@@ -85,6 +94,12 @@ gulp.task('pug', () => {
   }
   else {
     stream = stream
+      .pipe(minifyHtml({
+        removeComments: false,
+        collapseWhitespace: false,
+        conservativeCollapse: false,
+        removeAttributeQuotes: false,
+      }))
       .pipe(browserSync.stream())
   }
   return stream
@@ -105,7 +120,7 @@ gulp.task('lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('default', () => {
+gulp.task('default', ['pug', 'scss', 'js', 'copy'], () => {
   gulp.watch('src/**/*.scss', ['scss']);
   gulp.watch('src/**/*.js', ['js']);
   gulp.watch('src/**/*.pug', ['pug']);
@@ -119,6 +134,8 @@ gulp.task('browser-sync', ['default'], () => {
     },
   });
 });
+
+gulp.task('build', ['pug', 'scss', 'js', 'copy']);
 
 function logError(err) {
   gutil.log(err.toString());
