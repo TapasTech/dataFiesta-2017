@@ -8,6 +8,7 @@ const eslint = require('gulp-eslint');
 const uglify = require('gulp-uglify');
 const rollup = require('gulp-rollup');
 const sass = require('gulp-sass');
+const pug = require('gulp-pug');
 const rename = require('gulp-rename');
 const rev = require('gulp-rev');
 const minifyHtml = require('gulp-htmlmin');
@@ -45,13 +46,10 @@ gulp.task('scss', () => {
     .pipe(plumber(logError))
     .pipe(sass({outputStyle}))
     .on('error', sass.logError)
-    .pipe(rename('styles.css'));
-  if (isProd) {
-    stream
-      .pipe(gulp.dest(DIST + '/assets'));
-  }
-  if (!isProd) stream = stream
+    .pipe(rename('styles.css'))
     .pipe(gulp.dest('src/assets'))
+    .pipe(gulp.dest(DIST + '/assets'));
+  if (!isProd) stream = stream
     .pipe(browserSync.stream());
   return stream;
 });
@@ -71,9 +69,11 @@ gulp.task('js', () => {
   return stream;
 });
 
-gulp.task('html', ['scss', 'js'], () => {
-  let stream = gulp.src('src/index.html')
-    .pipe(assetsInjector.inject({link: !isProd}));
+gulp.task('pug', () => {
+  let stream = gulp.src('src/templates/index.pug')
+    .pipe(pug())
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest('src/'));
   if (isProd) {
     stream = stream
       .pipe(minifyHtml({
@@ -98,8 +98,6 @@ gulp.task('copy', () => {
     .pipe(gulp.dest(DIST));
 });
 
-gulp.task('default', ['html', 'copy']);
-
 gulp.task('lint', () => {
   return gulp.src('src/**/*.js')
     .pipe(eslint())
@@ -107,13 +105,13 @@ gulp.task('lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('watch', ['default'], () => {
+gulp.task('default', () => {
   gulp.watch('src/**/*.scss', ['scss']);
   gulp.watch('src/**/*.js', ['js']);
-  gulp.watch('src/**/*.html', ['html']);
+  gulp.watch('src/**/*.pug', ['pug']);
 });
 
-gulp.task('browser-sync', ['watch'], () => {
+gulp.task('browser-sync', ['default'], () => {
   browserSync.init({
     notify: false,
     server: {
