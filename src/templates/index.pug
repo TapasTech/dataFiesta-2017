@@ -1,8 +1,6 @@
 doctype html
-html(lang="en")
-  head
-    title= 'title'
-    link(href='assets/styles.css' rel='stylesheet')
+html(lang="zh-cmn-Hans")
+  include head
   body
     include navbar
     h1 Pug - node template engine
@@ -10,6 +8,6 @@ html(lang="en")
       p.
         Pug is a terse and simple templating language with a
         strong focus on performance and powerful features.
-      div.wrapper.
+      .wrapper.
         wrapper content
   script(src='assets/app.js' type='text/javascript')
