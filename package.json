@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "gulp browser-sync",
+    "dev": "gulp clean && gulp browser-sync",
     "build": "gulp clean && NODE_ENV=production gulp build",
     "lint": "gulp lint"
   },

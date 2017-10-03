@@ -14,7 +14,6 @@ const rev = require('gulp-rev');
 const minifyHtml = require('gulp-htmlmin');
 const through = require('through2');
 const postcss = require('gulp-postcss');
-const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const browserSync = require('browser-sync').create();
@@ -43,17 +42,18 @@ gulp.task('clean', () => del(DIST));
 gulp.task('scss', () => {
   let outputStyle = isProd ? 'compressed' : 'expanded';
   let stream = gulp.src('src/scss/index.scss')
-    // .pipe(plumber(logError));
-  /*if (isProd) {
+    .pipe(sass({outputStyle}))
+    .on('error', sass.logError);
+  if (isProd) {
     stream = stream
-      .pipe(autoprefixer())
-      .pipe(cssnano())
-  }*/
-  stream.pipe(sass({outputStyle}))
-    .on('error', sass.logError)
+    .pipe(postcss([
+      autoprefixer(),
+      isProd && cssnano(),
+    ]));
+  }
+  stream = stream
     .pipe(rename('styles.css'))
     .pipe(gulp.dest('src/assets'))
-    .pipe(rename('styles.css'))
     .pipe(gulp.dest(DIST + '/assets'));
   if (!isProd) {
     stream = stream
@@ -80,8 +80,9 @@ gulp.task('js', () => {
 });
 
 gulp.task('pug', () => {
+  let pretty = !isProd;
   let stream = gulp.src('src/templates/index.pug')
-    .pipe(pug())
+    .pipe(pug({pretty}))
     .pipe(rename('index.html'))
     .pipe(gulp.dest('src/'));
   if (isProd) {
@@ -94,14 +95,7 @@ gulp.task('pug', () => {
       }));
   }
   else {
-    stream = stream
-      .pipe(minifyHtml({
-        removeComments: false,
-        collapseWhitespace: false,
-        conservativeCollapse: false,
-        removeAttributeQuotes: false,
-      }))
-      .pipe(browserSync.stream())
+    stream.pipe(browserSync.stream())
   }
   return stream
     .pipe(gulp.dest(DIST));
@@ -137,8 +131,3 @@ gulp.task('browser-sync', ['default'], () => {
 });
 
 gulp.task('build', ['pug', 'scss', 'js', 'copy']);
-
-function logError(err) {
-  gutil.log(err.toString());
-  return this.emit('end');
-}
