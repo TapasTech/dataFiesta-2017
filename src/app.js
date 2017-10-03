@@ -4,7 +4,7 @@ async function hello() {
     const el = document.createElement('h1');
     el.innerHTML = 'hello, world~';
     document.body.appendChild(el);
-  }, 1500);
+  }, 1000);
   
 }
 

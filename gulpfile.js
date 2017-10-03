@@ -43,7 +43,7 @@ gulp.task('clean', () => del(DIST));
 gulp.task('scss', () => {
   let outputStyle = isProd ? 'compressed' : 'expanded';
   let stream = gulp.src('src/scss/index.scss')
-    .pipe(plumber(logError));
+    // .pipe(plumber(logError));
   /*if (isProd) {
     stream = stream
       .pipe(autoprefixer())
@@ -53,6 +53,7 @@ gulp.task('scss', () => {
     .on('error', sass.logError)
     .pipe(rename('styles.css'))
     .pipe(gulp.dest('src/assets'))
+    .pipe(rename('styles.css'))
     .pipe(gulp.dest(DIST + '/assets'));
   if (!isProd) {
     stream = stream
