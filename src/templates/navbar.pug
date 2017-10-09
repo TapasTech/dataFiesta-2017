@@ -1,3 +1,5 @@
+include _common
+
 -
   var items = [
   {
@@ -21,8 +23,22 @@
   }
   ];
 
-nav.nav-wrapper
+  var logos = [
+  {
+    src: `${imagePath}/logos/logo_yicai.png`,
+    href: 'http://www.yicai.com/'
+  },
+  {
+    src: `${imagePath}/logos/CBNData_logo.png`,
+    href: 'http://www.cbndata.com/'
+  }
+  ]
+
+nav#navbar
   .logos-wrapper
-  .items-wrapper
+    each logo in logos
+      a.logo-unit(href=logo.href, target='_blank')
+        img(src=logo.src)
+  .items-wrapper.PingFang-Regular
     each item in items
-      a(href=item.link)=item.text
+      a.nav-item(href=item.link)=item.text
