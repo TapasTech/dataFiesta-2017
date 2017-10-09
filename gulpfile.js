@@ -9,6 +9,7 @@ const uglify = require('gulp-uglify');
 const rollup = require('gulp-rollup');
 const sass = require('gulp-sass');
 const pug = require('gulp-pug');
+const notify = require('gulp-notify');
 const rename = require('gulp-rename');
 const rev = require('gulp-rev');
 const minifyHtml = require('gulp-htmlmin');
@@ -53,7 +54,7 @@ gulp.task('scss', () => {
   }
   stream = stream
     .pipe(rename('styles.css'))
-    .pipe(gulp.dest('src/assets'))
+    // .pipe(gulp.dest('src/assets'))
     .pipe(gulp.dest(DIST + '/assets'));
   if (!isProd) {
     stream = stream
@@ -72,8 +73,8 @@ gulp.task('js', () => {
       .pipe(uglify());
   }
   stream = stream
-    .pipe(gulp.dest(DIST + '/assets'))
-    .pipe(gulp.dest('src/assets'));
+    .pipe(gulp.dest(DIST + '/assets'));
+    // .pipe(gulp.dest('src/assets'));
   if (!isProd) stream = stream
     .pipe(browserSync.stream());
   return stream;
@@ -84,7 +85,10 @@ gulp.task('pug', () => {
   let stream = gulp.src('src/templates/index.pug')
     .pipe(pug({pretty}))
     .pipe(rename('index.html'))
-    .pipe(gulp.dest('src/'));
+    .pipe(gulp.dest('src/'))
+    .on('error', notify.onError( (error) => {
+      return `pug went wrong, ${error}`; 
+    }));
   if (isProd) {
     stream = stream
       .pipe(minifyHtml({

@@ -1,3 +1,34 @@
-nav.nav-bar
-  li.nav-item.
-    home
+-
+  var items = [
+  {
+  link: '#',
+  text: '数据盛典'
+  },{
+  link: '#highlights',
+  text: '活动亮点'
+  },{
+  link: '#agenda',
+  text: '活动流程'
+  },{
+  link: '#tickets',
+  text: '参会购票'
+  },{
+  link: '#tickets',
+  text: '参会购票'
+  },{
+  link: '#retrospect',
+  text: '往期回顾'
+  },{
+  link: '#contact',
+  text: '联系我们'
+  }
+  ];
+
+mixin nav-item(link, text)
+  a(href=link)=text
+
+nav.nav-wrapper
+  .logos-wrapper
+  .items-wrapper
+    each item in items
+      +nav-item(item.link, item.text)
