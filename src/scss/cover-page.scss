@@ -1,0 +1,30 @@
+@import 'utils';
+@import 'mixins';
+@import 'variables';
+
+#cover-page {
+  min-height: 9/16 * 100vw;
+  .content-wrapper {
+    margin-top: 50vh;
+    @include Flex(column, flex-start, center);
+    .title-wrapper {
+      @include Flex(column, flex-start, center);
+      margin-bottom: 32px;
+      .module-title {
+        @include module-title(white, 48px)
+      }
+    }
+
+    .text-wrapper {
+      font-size: 16px;
+      max-width: 566px;
+      text-align: center;
+      .text-detail {
+        color: rgba(255,255,255,0.90);
+        letter-spacing: -0.45px;
+        margin-bottom: 10px;
+      }
+    }
+
+  }
+}

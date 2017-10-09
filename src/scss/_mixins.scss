@@ -13,3 +13,10 @@
   background-color: $color;
   transform: skew($skew);
 }
+
+@mixin module-title($color: $color-cyan, $size: 51px) {
+  @extend .pf-Medium;
+  font-size: $size;
+  letter-spacing: -1.43px;
+  @include Underline($color);
+}

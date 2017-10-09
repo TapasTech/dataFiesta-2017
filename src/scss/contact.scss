@@ -15,6 +15,7 @@
 
   .module-title {
     margin-bottom: 68px;
+    @include module-title($color-cyan);
   }
 
   .detail-wrapper {
