@@ -1,0 +1,47 @@
+@import 'utils';
+@import 'mixins';
+
+#contact {
+  @include Flex(column, flex-start, center);
+
+  .slashes-wrapper {
+    margin-bottom: 50px;
+    @include Flex(row, center, flex-start);
+    .slash-unit {
+      margin: 0 8px;
+      @include slash();
+    }
+  }
+
+  .module-title {
+    margin-bottom: 68px;
+  }
+
+  .detail-wrapper {
+    .contact-unit {
+      @include Flex(column, flex-start, center);
+      margin-bottom: 40px;
+
+      .contact-title {
+        font-size: 24px;
+        margin-bottom: 2px;
+      }
+
+      .contact-detail {
+        text-align: center;
+
+        &:before, &:after {
+          margin: 0 14px;
+          @include slash();
+        }
+
+        &:last-of-type {
+          //margin-bottom: 128px;
+        }
+
+      }
+    }
+
+  }
+
+}

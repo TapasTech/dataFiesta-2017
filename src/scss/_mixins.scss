@@ -1,0 +1,15 @@
+@import '_variables';
+
+@mixin Underline($color, $width: 1px) {
+  display: inline-block;
+  border-bottom: $width solid $color;
+}
+
+@mixin slash($width: 2px, $height: 10px, $color: $slash-blue, $skew: -60deg) {
+  content: '';
+  display: inline-block;
+  width: $width;
+  height: $height;
+  background-color: $color;
+  transform: skew($skew);
+}

@@ -1,3 +1,5 @@
+@import '_variables';
+@import '_mixins';
 
 body {
   background-color: black;
@@ -17,3 +19,27 @@ a {
 .hidden {
   display: none !important;
 }
+
+.text-cyan {
+  color: #41F0E1;
+}
+
+// PingFang font family groups
+$fonts: Thin Light Regular Medium Semibold Heavy;
+$PingFang: (100 "Thin") (300 "Light") (400 "Regular") (500 "Medium") (700 "Semibold") (800 "Heavy");
+
+@each $weight, $name in $PingFang {
+  .PingFang-#{$name} {
+    font-family: Roboto, Helvetica Neue, Helvetica, Tahoma, Arial, Microsoft YaHei, PingFangSC-#{$name};
+    font-weight: $weight !important;
+  }
+}
+
+.module-title {
+  @extend .PingFang-Medium;
+  font-size: 51px;
+  //text-decoration: underline;
+  letter-spacing: -1.43px;
+  @include Underline($color-cyan);
+}
+

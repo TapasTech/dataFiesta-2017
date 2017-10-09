@@ -1,1 +1,30 @@
-#contact
+
+-
+  var contacts = [
+  {
+    title: '参会咨询',
+    detail: '胡彬彬 hubinbin@yicai.com',
+    phone: '021-22004432'
+  },
+  {
+    title: '商务合作',
+    detail: '王振涵 wangzhenhan@yicai.com'
+  },
+  {
+    title: '媒体合作',
+    detail: '陈玉桦 chenyuhua@yicai.com'
+  }
+  ];
+
+#contact.text-cyan
+  .slashes-wrapper
+    - for (var i = 0; i<20; i++)
+      .slash-unit
+  .module-title 联系我们
+  .detail-wrapper
+    each contact in contacts
+      .contact-unit
+        .contact-title=contact.title
+        .contact-detail.PingFang-Regular=contact.detail
+        if contact.phone
+          .contact-phone=contact.phone

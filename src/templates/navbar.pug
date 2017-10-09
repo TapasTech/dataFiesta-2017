@@ -21,11 +21,8 @@
   }
   ];
 
-mixin nav-item(link, text)
-  a(href=link)=text
-
 nav.nav-wrapper
   .logos-wrapper
   .items-wrapper
     each item in items
-      +nav-item(item.link, item.text)
+      a(href=item.link)=item.text
