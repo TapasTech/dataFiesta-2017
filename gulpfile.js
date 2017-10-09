@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const del = require('del');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
@@ -54,7 +52,6 @@ gulp.task('scss', () => {
   }
   stream = stream
     .pipe(rename('styles.css'))
-    // .pipe(gulp.dest('src/assets'))
     .pipe(gulp.dest(DIST + '/assets'));
   if (!isProd) {
     stream = stream
@@ -74,7 +71,6 @@ gulp.task('js', () => {
   }
   stream = stream
     .pipe(gulp.dest(DIST + '/assets'));
-    // .pipe(gulp.dest('src/assets'));
   if (!isProd) stream = stream
     .pipe(browserSync.stream());
   return stream;
@@ -83,12 +79,10 @@ gulp.task('js', () => {
 gulp.task('pug', () => {
   let pretty = !isProd;
   let stream = gulp.src('src/templates/index.pug')
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     .pipe(pug({pretty}))
     .pipe(rename('index.html'))
-    .pipe(gulp.dest('src/'))
-    .on('error', notify.onError( (error) => {
-      return `pug went wrong, ${error}`; 
-    }));
+    .pipe(gulp.dest('src/'));
   if (isProd) {
     stream = stream
       .pipe(minifyHtml({
