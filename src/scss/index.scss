@@ -1,9 +1,8 @@
-
-@import "module1";
-@import "module2";
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "common";
+@import "navbar";
+@import "cover-page";
+@import "highlights";
+@import "agenda";
+@import "tickets";
+@import "retrospect";
+@import "contact";
