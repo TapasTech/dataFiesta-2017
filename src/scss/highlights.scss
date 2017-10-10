@@ -1,3 +1,123 @@
 @import 'utils';
 @import 'mixins';
 @import 'variables';
+
+$section-width: 265px;
+$border-color: rgba(255,255,255,0.40);
+
+#highlights {
+  .title-wrapper {
+    text-align: center;
+    .module-title {
+      @include module-title(white, 51px);
+    }
+  }
+
+  .content-wrapper {
+    @include Flex(column wrap, flext-start, space-between);
+    align-content: space-between;
+    flex: 0;
+    height: 1000px;
+    width: 1048px;
+    margin: 46px auto;
+
+    .unit-wrapper {
+      position: relative;
+      @include Flex(column, flex-start, flex-start);
+      overflow: visible;
+      width: $section-width;
+      height: 259px;
+      margin-bottom: 42px;
+      padding-left: 24px;
+      border: 1px solid $border-color;
+
+      .section-title {
+        margin-top: -63px;
+        white-space: nowrap;
+        letter-spacing: -0.67px;
+
+        .number {
+          font-size: 144px;
+          font-family: DIN-Black;
+          letter-spacing: -4.03px;
+          display: inline-block;
+          @include text-fill-linear(#E832B4, white);
+          &:nth-of-type(n-2) {
+            margin-right: -4px;
+          }
+        }
+
+        .title {
+          padding: 12px 6px 0 0;
+          background: #000;
+          font-size: 24px;
+          display: inline-block;
+        }
+      }
+
+      &:first-of-type {
+        .section-title {
+          margin-left: -8px;
+        }
+      }
+      &:nth-of-type(3) {
+        height: 409px;
+        .title {
+          margin-left: 8px;
+        }
+      }
+
+      &:nth-of-type(n+2) {
+        .section-content {
+          width: 348px;
+        }
+      }
+      &:nth-of-type(n+3) {
+        .section-content {
+          width: 308px;
+        }
+      }
+      &:last-of-type {
+        height: 400px;
+        border-bottom: none;
+        .section-content {
+          margin-top: 0;
+        }
+        .section-title {
+          white-space: normal;
+        }
+
+        &:after {
+          $length: $section-width/2;
+          position: absolute;
+          left: $length/2;
+          bottom: -$length;
+          $rotate: 0deg;
+          $skew: 45deg;
+          @include slash($width: 1px, $height: $length, $color: $border-color, $transform: skew($skew));
+        }
+      }
+
+      .section-content {
+        width: 324px;
+        margin: -26px 0 0 0;
+        padding: 16px 0 4px 0;
+        background: #000;
+        letter-spacing: -0.45px;
+        .sub-wrapper {
+          .section-text {
+            margin: 2px 0 14px 0;
+          }
+        }
+        .subtitle {
+          font-size: 18px;
+        }
+        .section-text {
+          opacity: 0.9;
+        }
+      }
+    }
+
+  }
+
+}

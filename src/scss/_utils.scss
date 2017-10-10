@@ -26,6 +26,16 @@
   background-size: $bgSize;
 }
 
+@mixin text-fill($color) {
+  background: $color;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin text-fill-linear($color1, $color2) {
+  @include text-fill(linear-gradient(to bottom, $color1, $color2));
+}
+
 $pi: 3.14159265359;
 
 @function fact($number) {

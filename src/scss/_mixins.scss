@@ -5,13 +5,13 @@
   border-bottom: $width solid $color;
 }
 
-@mixin slash($width: 2px, $height: 10px, $color: $slash-blue, $skew: -60deg) {
+@mixin slash($width: 2px, $height: 10px, $color: $slash-blue, $transform: none) {
   content: '';
   display: inline-block;
   width: $width;
   height: $height;
   background-color: $color;
-  transform: skew($skew);
+  transform: $transform;
 }
 
 @mixin module-title($color: $color-cyan, $size: 51px) {

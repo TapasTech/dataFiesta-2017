@@ -1,1 +1,64 @@
+-
+  var sections = [
+    {
+      num: 1,
+      title: '份权威数据报告',
+      text:'CBNData携手多家互联网消费领域顶尖数据源，聚焦互联网消费升级，洞察互联网消费特征，解析行业发展趋势，重磅发布',
+      strong: '《2017中国互联网消费生态大数据报告》。'
+    },
+    {
+      num: 9,
+      title: '大新锐商业力量',
+      text: '他们是消费升级的推动者，是商业社会积极向前的动力。CBNData将基于大数据洞察正式发布“2017中国互联网消费升级商业力量”。'
+    },
+    {
+      num: 3,
+      title: '大狂享乐章',
+      text: 'CBNData携手多家互联网消费领域顶尖数据源，聚焦互联网消费升级，洞察互联网消费特征，解析行业发展趋势，重磅发布《2017中国互联网消费生态大数据报告》。',
+      subs: [
+        {
+          subtitle: '新消费狂享曲',
+          detail:'探索愈加成熟的互联网消费者不断升级的互联网消费形态。'
+        },
+        {
+          subtitle: '新智慧狂享曲',
+          detail:'想象智慧城市的未来，挖掘美好便捷生活背后的科技与创新。'
+        },
+        {
+          subtitle: '新跨界狂享曲',
+          detail:'畅聊如何玩转跨界营销，用共赢的方式释放品牌的复合能量。'
+        }
+      ]
+    },
+    {
+      num: 27,
+      title: '位重磅嘉宾',
+      text: '聚集多位互联网行业顶尖商业领袖，发表独到见解，深度探讨行业发展。'
+    }
+  ]
+
+mixin section-unit(data)
+  .unit-wrapper
+    .section-title
+      .number=data.num
+      .title.pf-Medium=data.title
+    .section-content
+      if data.subs
+        each sub in data.subs
+          .sub-wrapper
+            .subtitle.pf-Medium=sub.subtitle
+            .section-text=sub.detail
+      else
+        if data.strong
+          .section-text=data.text
+            span.pf-Semibold=data.strong
+        else
+          .section-text=data.text
+
+
 #highlights
+  .title-wrapper
+    .module-title 活动亮点
+  .content-wrapper
+    each datum in sections
+      +section-unit(datum)

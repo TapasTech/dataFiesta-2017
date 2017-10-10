@@ -10,7 +10,7 @@
     @include Flex(row, center, flex-start);
     .slash-unit {
       margin: 0 8px;
-      @include slash();
+      @include slash($transform: skew(-60deg));
     }
   }
 
@@ -34,11 +34,7 @@
 
         &:before, &:after {
           margin: 0 14px;
-          @include slash();
-        }
-
-        &:last-of-type {
-          //margin-bottom: 128px;
+          @include slash($transform: skew(-60deg));
         }
 
       }
