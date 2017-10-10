@@ -18,7 +18,7 @@ $border-color: rgba(255, 255, 255, 0.40);
     align-content: space-between;
     flex: 0;
     height: 1000px;
-    width: 1048px;
+    max-width: 1048px;
     margin: 46px auto;
 
     .unit-wrapper {
