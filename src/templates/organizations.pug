@@ -1,21 +1,92 @@
 include _common
 
-mixin section-title(title)
-  .section-title=title
-  .logo-wrapper
+mixin section-unit(title, logos, path)
+  .section-unit
+    .section-title=title
+    .logos-wrapper
+      each logo in logos
+        .logo-unit
+          img(src=`${imagePath}${path}/${logo}.png`)
 
 -
   var hosts = [
   '第一财经',
   'CBNData'
   ];
+  var officialMedia = [
+  '第一财经日报',
+  '第一财经周刊',
+  '一财网',
+  '东方财经·浦东',
+  '第一财经APP',
+  'CBN Weekly'
+  ];
+  var prevPartners = [
+    '淘宝网',
+    '天猫',
+    '滴滴',
+    '优酷',
+    'UC',
+    '蚂蚁财富',
+    '微博',
+    '美团点评',
+    '蜻蜓fm',
+    '飞猪',
+    '豌豆荚',
+    '菜鸟',
+    '网易新闻',
+    '猫眼',
+    '链家'
+  ]
+  var prevMedia = [
+    '人民数字',
+    'UC',
+    '凤凰都市传媒',
+    '华视传媒',
+    '36氪',
+    '新浪科技',
+    '网易直播',
+    '一点资讯',
+    '亿邦动力',
+    '电商在线',
+    '观察者网',
+    '天下网商',
+    '猎云网',
+    '蓝鲸传媒',
+    '时尚',
+    '中国新闻网',
+    '搜狐',
+    '界面',
+    '凤凰网',
+    'zaker',
+    '品途商业评论',
+    '创业帮',
+    '看看新闻',
+    '北京时间',
+    '财经',
+    '野马财经',
+    '钛媒体',
+    'FT中文网',
+    'socialOne',
+    '亿欧',
+    '证券',
+    'DQ ',
+    '千龙网',
+    '新芽',
+    '财经搜索',
+    '数据猿',
+    '和讯',
+    '大数据人',
+    '数据观'
+  ]
 
 #organizations
-  .section-wrapper
-    +section-title('主办方')
-    each host in hosts
-        img(src=`${imagePath}hosts/${host}.png`)
+  +section-unit('主办方', hosts, 'hosts')
+  +section-unit('官方媒体', officialMedia, 'official-media')
+  +section-unit('往期合作伙伴', prevPartners, 'prev-partners')
+  +section-unit('往期合作媒体', prevMedia, 'prev-media')
 
-    +section-title('官方媒体')
-    +section-title('往期合作伙伴')
-    +section-title('往期合作媒体')
+
+    //+section-title('官方媒体')
+    //+section-title('往期合作伙伴')
+    //+section-title('往期合作媒体')

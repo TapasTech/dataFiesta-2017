@@ -4,6 +4,5 @@ node_modules
 /.idea
 /dist
 src/**/*.html
-src/**/*.css
-src/assets/*.js
 src/assets/logos
+package-lock.json
