@@ -1,5 +1,6 @@
 @import 'utils';
 @import 'mixins';
+@import 'variables';
 
 #contact {
   @include Flex(column, flex-start, center);

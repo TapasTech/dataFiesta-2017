@@ -15,8 +15,9 @@ include _common
   link: '#tickets',
   text: '参会购票'
   },{
-  link: '#retrospect',
-  text: '往期回顾'
+  link: 'http://z.dtcj.com/cbndata/fiesta/2016/index.html',
+  text: '往期回顾',
+  blank: true
   },{
   link: '#contact',
   text: '联系我们'
@@ -41,4 +42,7 @@ nav#navbar
         img(src=logo.src)
   .items-wrapper.pf-Regular
     each item in items
-      a.nav-item(href=item.link)=item.text
+      if (item.blank)
+        a.nav-item(href=item.link, target='_blank')=item.text
+      else
+        a.nav-item(href=item.link)=item.text

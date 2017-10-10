@@ -1,0 +1,21 @@
+include _common
+
+mixin section-title(title)
+  .section-title=title
+  .logo-wrapper
+
+-
+  var hosts = [
+  '第一财经',
+  'CBNData'
+  ];
+
+#organizations
+  .section-wrapper
+    +section-title('主办方')
+    each host in hosts
+        img(src=`${imagePath}hosts/${host}.png`)
+
+    +section-title('官方媒体')
+    +section-title('往期合作伙伴')
+    +section-title('往期合作媒体')
