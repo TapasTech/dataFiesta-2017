@@ -209,3 +209,19 @@ include _common
   ]
 
 #agenda
+  +title-bar('活动流程')
+  .content-wrapper
+    .control-bar
+      .control-unit.active 详尽版
+      .control-unit 精简版
+    .list-wrapper
+      .prelude
+        each item in prelude
+          .prelude-unit
+            .time=item.time
+            .program
+              .title=item.program
+          .separator
+      .rhapsodies
+
+

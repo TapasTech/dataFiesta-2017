@@ -1,3 +1,71 @@
 @import 'utils';
 @import 'mixins';
 @import 'variables';
+
+#agenda {
+  .title-wrapper {
+    margin: 104px auto 16px auto;
+  }
+  .content-wrapper {
+    @include Flex(column, flex-start, center);
+
+    .control-bar {
+      @include Flex(row, center, flex-start);
+      .control-unit {
+        opacity: 0.7;
+        letter-spacing: -0.45px;
+
+        &:first-of-type {
+          margin-right: 32px;
+        }
+        &.active {
+          color: $color-cyan;
+        }
+        &:hover {
+          cursor: pointer;
+          color: $color-cyan;
+        }
+      }
+    }
+
+    .list-wrapper {
+      width: 100%;
+      .prelude {
+        margin: 34px 0 32px 0;
+        &-unit {
+          @include Flex(row, center, center);
+          font-size: 18px;
+          .time {
+            display: inline-block;
+            width: 50%;
+            flex-shrink: 0;
+            padding-right: 12px;
+            text-align: end;
+            letter-spacing: -0.75px;
+          }
+          .program {
+            display: inline-block;
+            width: 50%;
+            color: $color-cyan;
+            .title {
+              display: inline-block;
+              padding: 12px 16px;
+              border: 1px solid rgba(255, 255, 255, 0.40);
+            }
+          }
+        }
+        .separator {
+          position: relative;
+          left: 1px;
+          content: '';
+          display: block;
+          width: 1px;
+          height: 22px;
+          margin: 5px auto;
+          background: rgba(255, 255, 255, 0.40);
+        }
+      }
+    }
+
+  }
+}

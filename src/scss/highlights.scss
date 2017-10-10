@@ -6,12 +6,6 @@ $section-width: 266px;
 $border-color: rgba(255, 255, 255, 0.40);
 
 #highlights {
-  .title-wrapper {
-    text-align: center;
-    .module-title {
-      @include module-title(white, 51px);
-    }
-  }
 
   .content-wrapper {
     @include Flex(column wrap, flext-start, space-between);

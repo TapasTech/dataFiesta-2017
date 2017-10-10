@@ -5,6 +5,18 @@ body {
   background-color: black;
   color: white;
   font-size: 16px;
+
+  .title-wrapper {
+    text-align: center;
+    .module-title {
+      @extend .pf-Medium;
+      font-size: 51px;
+      text-align: center;
+      letter-spacing: -1.43px;
+      @include module-title(white, 51px);
+    }
+  }
+
 }
 
 * {
@@ -35,12 +47,5 @@ $PingFang: (100 "Thin") (300 "Light") (400 "Regular") (500 "Medium") (700 "Semib
     font-family: Roboto, Helvetica Neue, Helvetica, Tahoma, Arial, Microsoft YaHei, PingFangSC-#{$name};
     font-weight: $weight !important;
   }
-}
-
-.module-title {
-  @extend .pf-Medium;
-  font-size: 51px;
-  text-align: center;
-  letter-spacing: -1.43px;
 }
 

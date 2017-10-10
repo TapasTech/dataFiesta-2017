@@ -1,3 +1,4 @@
+include _common
 -
   var sections = [
     {
@@ -57,8 +58,7 @@ mixin section-unit(data)
 
 
 #highlights
-  .title-wrapper
-    .module-title 活动亮点
+  +title-bar('活动亮点')
   .content-wrapper
     each datum in sections
       +section-unit(datum)
