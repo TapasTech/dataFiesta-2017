@@ -54,7 +54,7 @@ include _common
 
   var rhapsodies = [
     {
-      name: '新消费狂享曲',
+      tag: '新消费狂享曲',
       items: [
         {
           time: '13:30-13:45',
@@ -104,7 +104,7 @@ include _common
       ]
     },
     {
-      name: '新智慧狂享曲',
+      tag: '新智慧狂享曲',
       items: [
         {
           time: '15:15-15:30',
@@ -154,7 +154,7 @@ include _common
       ]
     },
     {
-      name: '新跨界狂享曲',
+      tag: '新跨界狂享曲',
       items: [
         {
           time: '16:30-16:45',
@@ -214,6 +214,9 @@ mixin person-unit(avatar, name, job)
     .name=`/${name}`
     .job=job
 
+mixin tag(tagName)
+  .tag=tagName
+
 #agenda
   +title-bar('活动流程')
   .content-wrapper
@@ -236,5 +239,9 @@ mixin person-unit(avatar, name, job)
                       +person-unit('',person.name, person.job)
           .separator
       .rhapsodies
+        each list in rhapsodies
+          .rhapsody-unit
+            +tag(list.tag)
+            .separator
 
 

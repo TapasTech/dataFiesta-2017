@@ -36,6 +36,20 @@
   @include text-fill(linear-gradient(to bottom, $color1, $color2));
 }
 
+// mixin for triangles
+$opposite-direction: (top: bottom, right: left, bottom: top, left: right);
+
+@mixin triangle($size, $color, $direction: bottom) {
+  $height: $size / 2;
+  content: '';
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: $height solid transparent;
+  border-#{$direction}: none;
+  border-#{map-get($opposite-direction, $direction)}: $height solid $color;
+}
+
 $pi: 3.14159265359;
 
 @function fact($number) {
@@ -54,8 +68,7 @@ $pi: 3.14159265359;
     @for $i from 1 through $exp {
       $value: $value * $number;
     }
-  }
-  @else if $exp < 0 {
+  } @else if $exp < 0 {
     @for $i from 1 through -$exp {
       $value: $value / $number;
     }
@@ -66,7 +79,6 @@ $pi: 3.14159265359;
 @function rad($angle) {
   $unit: unit($angle);
   $unitless: $angle / ($angle * 0 + 1);
-
   @if $unit == deg {
     $unitless: $unitless / 180 * $pi;
   }
@@ -100,11 +112,11 @@ $pi: 3.14159265359;
 @function fabs($x) {
   @if $x > 0 {
     @return $x;
-  }
-  @else {
+  } @else {
     @return $x * -1;
   }
 }
+
 @function sqrt($x) {
   $ans: $x;
   $del: 0.00001;

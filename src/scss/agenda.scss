@@ -30,6 +30,7 @@
 
     .list-wrapper {
       width: 100%;
+      @include Flex(column, flex-start, center);
       .prelude {
         margin: 34px 0 32px 0;
         &-unit {
@@ -59,17 +60,48 @@
             }
           }
         }
-        .separator {
-          position: relative;
-          left: 1px;
-          content: '';
-          display: block;
-          width: 1px;
-          height: 22px;
-          margin: 5px auto;
-          background: rgba(255, 255, 255, 0.40);
+      }
+
+      .separator {
+        position: relative;
+        left: 1px;
+        content: '';
+        display: block;
+        width: 1px;
+        height: 22px;
+        margin: 5px auto;
+        background: rgba(255, 255, 255, 0.40);
+      }
+
+      .rhapsodies {
+        @include Flex(row, center, flex-start);
+        .rhapsody-unit {
+          @include Flex(column, flex-start, center);
+          width: 418px;
+          .tag {
+            //align-self: flex-start;
+            position: relative;
+            width: 152px;
+            //height: 32.5px;
+            //line-height: 32px;
+            padding: 2px 0 2px 8px;
+            background: linear-gradient(to right,  #003CB4, #EB32B4);
+            font-size: 23px;
+            letter-spacing: -0.66px;
+
+            $height: 36px;
+            &:after {
+              @include triangle($height, #EB32B4, right);
+              display: inline-block;
+              position: absolute;
+              top: 0;
+              right: -$height/2;
+            }
+
+          }
         }
       }
+
     }
 
   }
