@@ -33,10 +33,10 @@ include _common
       program: '力量之音',
       detail: {
         title: '我们并不了解人工智能',
-        people: {
+        people: [{
           name: '李开复',
           job: '创新工场董事长兼CEO'
-        }
+        }]
       }
     },
     {
@@ -44,10 +44,10 @@ include _common
       program: '力量之音',
       detail: {
         title: '让城市没有陌生的角落',
-        people: {
+        people: [{
           name: '戴威',
           job: 'ofo小黄车CEO'
-        }
+        }]
       }
     }
   ];
@@ -208,6 +208,12 @@ include _common
     }
   ]
 
+mixin person-unit(avatar, name, job)
+  .person-unit
+    .avatar=avatar
+    .name=`/${name}`
+    .job=job
+
 #agenda
   +title-bar('活动流程')
   .content-wrapper
@@ -220,7 +226,14 @@ include _common
           .prelude-unit
             .time=item.time
             .program
-              .title=item.program
+              .content
+                .title=item.program
+                if(item.detail)
+                  - var {detail} = item;
+                  .detail
+                    if(detail.people)
+                    each person in detail.people
+                      +person-unit('',person.name, person.job)
           .separator
       .rhapsodies
 
