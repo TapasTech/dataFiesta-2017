@@ -2,8 +2,8 @@
 @import 'mixins';
 @import 'variables';
 
-$section-width: 265px;
-$border-color: rgba(255,255,255,0.40);
+$section-width: 266px;
+$border-color: rgba(255, 255, 255, 0.40);
 
 #highlights {
   .title-wrapper {
@@ -88,13 +88,10 @@ $border-color: rgba(255,255,255,0.40);
         }
 
         &:after {
-          $length: $section-width/2;
-          position: absolute;
-          left: $length/2;
-          bottom: -$length;
-          $rotate: 0deg;
-          $skew: 45deg;
-          @include slash($width: 1px, $height: $length, $color: $border-color, $transform: skew($skew));
+          @include chevron($section-width/2, 45deg, left, $color: $border-color);
+        }
+        &:before {
+          @include chevron($section-width/2, -45deg, right, $color: $border-color);
         }
       }
 

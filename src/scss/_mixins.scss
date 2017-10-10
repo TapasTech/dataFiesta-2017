@@ -14,6 +14,17 @@
   transform: $transform;
 }
 
+@mixin chevron($length, $skew, $direction,$width: 1.5px, $color: $slash-blue) {
+  position: absolute;
+  @if $direction == left {
+    left: $length/2 - 1.4px;
+  } @else if $direction == right {
+    right: $length/2 - 1.4px;
+  }
+  bottom: -$length;
+  @include slash($width: $width, $height: $length, $color: $color, $transform: skew($skew));
+}
+
 @mixin module-title($color: $color-cyan, $size: 51px) {
   @extend .pf-Medium;
   font-size: $size;
