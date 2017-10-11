@@ -13,14 +13,20 @@
     .control-bar {
       @include Flex(row, center, flex-start);
       .control-unit {
+        position: relative;
         opacity: 0.7;
         letter-spacing: -0.45px;
-
         &:first-of-type {
           margin-right: 32px;
         }
         &.active {
           color: $color-cyan;
+          &:after {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            @include diamond($color: $color-cyan, $translate: (-50%, 100%));
+          }
         }
         &:hover {
           cursor: pointer;
@@ -50,7 +56,6 @@
 
       .agenda-unit {
         @include Flex(row, center, flex-start);
-
         font-size: 18px;
         width: 100%;
         .time {
@@ -71,10 +76,15 @@
               color: $color-cyan;
             }
             .detail {
-
+              .person-unit {
+                opacity: 0.9;
+                letter-spacing: -0.39px;
+                font-size: 14px;
+              }
             }
           }
         }
+
       }
 
 
@@ -96,6 +106,8 @@
           width: 418px;
           .tag {
             position: relative;
+            z-index: 10;
+            transform: translate(-56px, 10px);
             width: 152px;
             padding: 2px 0 2px 8px;
             background: linear-gradient(to right, #003CB4, #EB32B4);
@@ -109,10 +121,44 @@
               top: 0;
               right: -$height/2;
             }
+            & + .separator {
+              height: 32px;
+            }
+
           }
           .agenda-unit {
 
           }
+
+          &:last-of-type {
+            .separator:last-of-type {
+              position: relative;
+              height: 78px;
+              &:after {
+                position: absolute;
+                bottom: 0;
+                @include diamond($translate: (-45%, 100%));
+              }
+            }
+          }
+
+          &:not(:first-child) {
+            .tag {
+              &:before {
+                z-index: -1;
+                content: '';
+                display: inline-block;
+                position: absolute;
+                transform: translate(-30px, 14px);
+                width: 21px;
+                height: 600px;
+                border-left: 1px solid rgba(255,255,255,0.40);
+                border-top: 1px solid rgba(255,255,255,0.40);
+              }
+            }
+
+          }
+
         }
       }
 

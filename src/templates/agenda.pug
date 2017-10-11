@@ -215,19 +215,21 @@ mixin person-unit(avatar, name, job)
 
 mixin tag(tagName)
   .tag=tagName
+  .separator
 
 mixin agenda-unit(time, type, people, title)
   .agenda-unit
     .time=time
     .program
       .content
-        .type=type
+        .type.pf-Medium=type
         if(title)
-          .title=title
+          .title.pf-Medium=title
         if(people)
           .detail
             each person in people
               +person-unit('',person.name, person.job)
+  .separator
 
 #agenda
   +title-bar('活动流程')
@@ -239,13 +241,10 @@ mixin agenda-unit(time, type, people, title)
       .prelude
         each item in prelude
           +agenda-unit(item.time, item.type, item.detail ? item.detail.people : null)
-          .separator
       .rhapsodies
         each list in rhapsodies
           .rhapsody-unit
             +tag(list.tag)
-            .separator
             each item in list.items
               +agenda-unit(item.time, item.type, item.people, item.title)
-              .separator
 

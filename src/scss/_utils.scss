@@ -38,7 +38,6 @@
 
 // mixin for triangles
 $opposite-direction: (top: bottom, right: left, bottom: top, left: right);
-
 @mixin triangle($size, $color, $direction: bottom) {
   $height: $size / 2;
   content: '';
@@ -49,6 +48,19 @@ $opposite-direction: (top: bottom, right: left, bottom: top, left: right);
   border-#{$direction}: none;
   border-#{map-get($opposite-direction, $direction)}: $height solid $color;
 }
+
+@mixin square($size: 8px, $color: cyan, $transform: none) {
+  content: '';
+  display: inline-block;
+  width: $size;
+  height: $size;
+  background: $color;
+  transform: $transform;
+}
+@mixin diamond($size: 8px, $color: cyan, $translate: (0,0)) {
+  @include square($size, $color, $transform: translate($translate) scale(1,1) rotate(45deg))
+}
+
 
 $pi: 3.14159265359;
 
