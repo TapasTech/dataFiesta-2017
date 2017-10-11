@@ -1,3 +1,89 @@
 @import 'utils';
 @import 'mixins';
 @import 'variables';
+
+#tickets {
+  margin-bottom: 120px;
+
+  .tickets-wrapper {
+    margin: 43px 0 56px 0;
+
+    height: 338px;
+
+  }
+
+  .control-panel {
+
+    .bar-dots {
+      @include Flex(row, center, flex-start);
+      .dot-unit {
+        @include diamond();
+        $gap: 24px;
+        margin: 0 $gap/2;
+        background: transparent;
+        border: 1px solid $color-cyan;
+        &.selected {
+          background: $color-cyan;
+        }
+      }
+
+    }
+
+    .bar-info {
+      @include Flex(row, center, center);
+      margin-top: 20px;
+
+      .info-wrapper {
+        @include Flex(row, center, center);
+        margin: 0 80px 0 108px;
+        width: 540px;
+        height: 83px;
+        border: 1px solid $border-grey;
+
+        .info-text {
+          width: 420px;
+          padding: 4px 0;
+          transform: translate(-96px, 0);
+          @include bg-black();
+          font-size: 12px;
+          .text {
+            opacity: 0.7;
+          }
+        }
+      }
+
+      .arrow {
+        $arrow-size: 26px;
+        width: $arrow-size;
+        height: $arrow-size * 1.5;
+        @include Flex(row, center, center);
+
+        .arrow-unit {
+          transition-duration: 1.2s;
+        }
+
+        .left {
+          @include hollow-triangle();
+        }
+        .right {
+          @include hollow-triangle($direction: right);
+        }
+
+        &:hover {
+          cursor: pointer;
+          .arrow-unit {
+            &:after {
+              //display: none;
+              visibility: hidden;
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

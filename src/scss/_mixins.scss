@@ -40,3 +40,7 @@
     margin: 0 $margin;
   }
 }
+
+@mixin bg-black() {
+  background: $bg-black;
+}

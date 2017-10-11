@@ -1,1 +1,22 @@
+include _common
+
 #tickets
+  +title-bar('参会购票')
+  .tickets-wrapper
+    .ticket-unit
+  .control-panel
+    .bar-dots
+      - for (var i = 1; i<=2; i++)
+        if (i===2)
+          .dot-unit.selected
+        else
+          .dot-unit
+    .bar-info
+      .arrow
+        .arrow-unit.left
+      .info-wrapper
+        .info-text
+          .text.
+            *购票说明：本项目为全国联网销售，与现场座位一一对应，采用【短信电子票】模式，请用户在购买流程中身份证一栏填写准确的手机号。请于演出当天，持官方通知短信，至演出现场换票入场。
+      .arrow
+        .arrow-unit.right

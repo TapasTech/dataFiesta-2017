@@ -39,7 +39,6 @@
       width: 100%;
       @include Flex(column, flex-start, center);
 
-
       .prelude {
         margin: 34px 0 0 0;
         width: 100%;
@@ -54,7 +53,7 @@
               border: 1px solid rgba(255, 255, 255, 0.40);
 
               .person-unit {
-                background: #000;
+                background: $bg-black;
               }
 
             }
@@ -69,7 +68,7 @@
               padding-bottom: 50px;
               .people-wrapper {
                 @include Flex(row, space-between, center);
-                background: #000;
+                background: $bg-black;
                 transform: translate(-93%, 0);
                 white-space: nowrap;
                 overflow: visible;
@@ -105,8 +104,6 @@
           margin-bottom: 0;
         }
 
-
-
         & + .slashes-wrapper {
           transform: translate(-50%, 0);
           .separator {
@@ -119,7 +116,6 @@
         }
 
       }
-
 
       .agenda-unit {
         @include Flex(row, center, flex-start);
@@ -252,8 +248,8 @@
                 transform: translate(-30px, 14px);
                 width: 21px;
                 height: 1382px;
-                border-left: 1px solid rgba(255,255,255,0.40);
-                border-top: 1px solid rgba(255,255,255,0.40);
+                border-left: 1px solid rgba(255, 255, 255, 0.40);
+                border-top: 1px solid rgba(255, 255, 255, 0.40);
               }
             }
 

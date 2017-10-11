@@ -42,7 +42,7 @@ $section-width: 266px;
 
         .title {
           padding: 12px 6px 0 0;
-          background: #000;
+          background: $bg-black;
           font-size: 24px;
           display: inline-block;
         }
@@ -92,7 +92,7 @@ $section-width: 266px;
         width: 324px;
         margin: -26px 0 0 0;
         padding: 16px 0 4px 0;
-        background: #000;
+        background: $bg-black;
         letter-spacing: -0.45px;
         .sub-wrapper {
           .section-text {

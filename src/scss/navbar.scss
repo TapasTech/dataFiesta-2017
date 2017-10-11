@@ -8,8 +8,8 @@
   z-index: 100;
   top: 0;
   @include Flex(row, space-between, center);
-  background: rgba(0,0,0,0.80);
-  border-bottom: 0.5px solid rgba(255,255,255,0.40);
+  background: rgba(0, 0, 0, 0.80);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.40);
   padding: 22px;
 
   .logos-wrapper {
@@ -43,6 +43,5 @@
 
     }
   }
-
 
 }
