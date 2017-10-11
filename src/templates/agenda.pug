@@ -4,13 +4,12 @@ include _common
   var prelude = [
     {
       time: '9:30-9:40',
-      program: '开场表演'
+      type: '开场表演'
     },
     {
       time: '9:40-10:00',
-      program: '嘉宾致辞',
+      type: '嘉宾致辞',
       detail: {
-        starter: true,
         people: [{
           name: '高韵斐',
           job: '上海文化广播影视集团有限公司总裁'
@@ -22,15 +21,15 @@ include _common
     },
     {
       time: '10:00-10:40',
-      program: '《2017中国互联网消费生态大数据报告》发布'
+      type: '《2017中国互联网消费生态大数据报告》发布'
     },
     {
       time: '10:40-11:20',
-      program: '2017中国互联网消费升级商业力量发布'
+      type: '2017中国互联网消费升级商业力量发布'
     },
     {
       time: '11:20-11:40',
-      program: '力量之音',
+      type: '力量之音',
       detail: {
         title: '我们并不了解人工智能',
         people: [{
@@ -41,7 +40,7 @@ include _common
     },
     {
       time: '11:40-12:00',
-      program: '力量之音',
+      type: '力量之音',
       detail: {
         title: '让城市没有陌生的角落',
         people: [{
@@ -58,25 +57,25 @@ include _common
       items: [
         {
           time: '13:30-13:45',
-          program: '演讲独奏',
+          type: '演讲独奏',
           title: '让吃变成一种娱乐',
-          people: {
+          people: [{
             name: '侯毅',
             job: '盒马鲜生CEO'
-          }
+          }]
         },
         {
           time: '13:45-14:00',
-          program: '演讲独奏',
+          type: '演讲独奏',
           title: '全渠道体验宜家式生活',
-          people: {
+          people: [{
             name: '朱昌来',
             job: '宜家中国零售总裁'
-          }
+          }]
         },
         {
           time: '13:30-13:45',
-          program: '圆桌和声',
+          type: '圆桌和声',
           title: '消费者的新消费',
           people: [
             {
@@ -108,25 +107,25 @@ include _common
       items: [
         {
           time: '15:15-15:30',
-          program: '演讲独奏',
+          type: '演讲独奏',
           title: '用智能课程代替传统老师',
-          people: {
+          people: [{
             name: '王翌',
             job: '英语流利说CEO'
-          }
+          }]
         },
         {
           time: '15:00-15:15',
-          program: '演讲独奏',
+          type: '演讲独奏',
           title: '人工智能的萌属性',
-          people: {
+          people: [{
             name: '龙泉寺',
             job: '学诚法师'
-          }
+          }]
         },
         {
           time: '15:30-16:30',
-          program: '圆桌和声',
+          type: '圆桌和声',
           title: '科技：让城市更智慧',
           people: [
             {
@@ -158,16 +157,16 @@ include _common
       items: [
         {
           time: '16:30-16:45',
-          program: '演讲独奏',
+          type: '演讲独奏',
           title: '创作者们在坚持什么',
-          people: {
+          people: [{
             name: '侯鸿亮',
             job: '正午阳光董事长'
-          }
+          }]
         },
         {
           time: '16:45-17:45',
-          program: '圆桌和声',
+          type: '圆桌和声',
           title: '"IP、内容与数据"：跨界营销新模式',
           people: [
             {
@@ -198,12 +197,12 @@ include _common
         },
       {
         time: '16:30-16:45',
-        program: '演讲独奏',
+        type: '演讲独奏',
         title: '越过山丘，看到了什么',
-        people: {
+        people: [{
         name: '高晓松',
         job: '阿里娱乐战略委员会主席'
-        }
+        }]
       }]
     }
   ]
@@ -217,6 +216,19 @@ mixin person-unit(avatar, name, job)
 mixin tag(tagName)
   .tag=tagName
 
+mixin agenda-unit(time, type, people, title)
+  .agenda-unit
+    .time=time
+    .program
+      .content
+        .type=type
+        if(title)
+          .title=title
+        if(people)
+          .detail
+            each person in people
+              +person-unit('',person.name, person.job)
+
 #agenda
   +title-bar('活动流程')
   .content-wrapper
@@ -226,22 +238,14 @@ mixin tag(tagName)
     .list-wrapper
       .prelude
         each item in prelude
-          .prelude-unit
-            .time=item.time
-            .program
-              .content
-                .title=item.program
-                if(item.detail)
-                  - var {detail} = item;
-                  .detail
-                    if(detail.people)
-                    each person in detail.people
-                      +person-unit('',person.name, person.job)
+          +agenda-unit(item.time, item.type, item.detail ? item.detail.people : null)
           .separator
       .rhapsodies
         each list in rhapsodies
           .rhapsody-unit
             +tag(list.tag)
             .separator
-
+            each item in list.items
+              +agenda-unit(item.time, item.type, item.people, item.title)
+              .separator
 
