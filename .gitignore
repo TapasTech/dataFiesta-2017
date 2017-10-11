@@ -5,5 +5,6 @@ node_modules
 /dist
 src/**/*.html
 src/assets/images
+src/assets/fonts
 package-lock.json
 

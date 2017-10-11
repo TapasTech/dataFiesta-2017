@@ -49,3 +49,11 @@ $PingFang: (100 "Thin") (300 "Light") (400 "Regular") (500 "Medium") (700 "Semib
   }
 }
 
+$DIN-list: (Black,  Bold, Euro, Light, Medium, Regular);
+@each $item in $DIN-list {
+  @font-face {
+    $font-name: DIN-#{$item};
+    font-family: $font-name;
+    src: url($font-url + $font-name + '.otf')
+  }
+}
