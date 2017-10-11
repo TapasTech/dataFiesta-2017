@@ -38,9 +38,12 @@
     .list-wrapper {
       width: 100%;
       @include Flex(column, flex-start, center);
+
+
       .prelude {
         margin: 34px 0 0 0;
         width: 100%;
+
         .agenda-unit {
           .time {
             line-height: 51px;
@@ -49,13 +52,74 @@
             .content {
               padding: 12px 16px;
               border: 1px solid rgba(255, 255, 255, 0.40);
+
+              .person-unit {
+                background: #000;
+              }
+
+            }
+          }
+
+        }
+
+        .agenda-unit:nth-child(3) {
+          .program {
+            .content {
+              width: 206px;
+              padding-bottom: 50px;
+              .people-wrapper {
+                @include Flex(row, space-between, center);
+                background: #000;
+                transform: translate(-93%, 0);
+                white-space: nowrap;
+                overflow: visible;
+                .person-unit {
+                  position: relative;
+                  height: 225px;
+                  margin-top: 0 !important;
+                  display: inline-block;
+                  margin-right: 50px;
+                  .avatar {
+                    position: static;
+                    .info {
+                      max-width: 100%;
+                      left: 0;
+                      top: 150px;
+                      transform: translate(18%, 0);
+                      font-size: 16px;
+                      .job {
+                        width: 160px;
+                        white-space: normal;
+                      }
+                    }
+                  }
+                }
+
+              }
+
             }
           }
         }
+
         .separator:last-of-type {
           margin-bottom: 0;
         }
+
+
+
+        & + .slashes-wrapper {
+          transform: translate(-50%, 0);
+          .separator {
+            order: -1;
+            &:after {
+              @include diamond($translate: (-45%, 150%));
+            }
+          }
+
+        }
+
       }
+
 
       .agenda-unit {
         @include Flex(row, center, flex-start);
@@ -78,11 +142,35 @@
             .type {
               color: $color-cyan;
             }
-            .detail {
+            .people-wrapper {
+              position: relative;
+              left: -26px;
               .person-unit {
                 opacity: 0.9;
                 letter-spacing: -0.39px;
                 font-size: 14px;
+                .avatar {
+                  $avatar-size: 146px;
+                  position: relative;
+
+                  width: $avatar-size;
+                  height: $avatar-size;
+                  @include bg-img();
+                  .info {
+                    position: absolute;
+                    display: block;
+                    overflow: visible;
+                    bottom: 0;
+                    left: $avatar-size - 30px;
+                    div {
+                      white-space: nowrap;
+                    }
+                  }
+                }
+
+                &:not(:first-child) {
+                  margin-top: 16px;
+                }
               }
             }
           }
@@ -103,18 +191,15 @@
 
       .slashes-wrapper {
         @include slash-bar($color: $border-grey);
-        transform: translate(-50%, 0);
         .separator {
-          order: -1;
           transform: translate(-8px, 4px);
-          &:after {
-            @include diamond($translate: (-45%, 150%));
-          }
+
         }
       }
 
       .rhapsodies {
         @include Flex(row, center, flex-start);
+        margin-left: -160px;
         .rhapsody-unit {
           @include Flex(column, flex-start, center);
           width: 418px;
@@ -140,8 +225,9 @@
             }
 
           }
-          .agenda-unit {
 
+          .slashes-wrapper {
+            transform: translate(50%, 0);
           }
 
           &:last-of-type {
@@ -165,15 +251,23 @@
                 position: absolute;
                 transform: translate(-30px, 14px);
                 width: 21px;
-                height: 600px;
+                height: 1382px;
                 border-left: 1px solid rgba(255,255,255,0.40);
                 border-top: 1px solid rgba(255,255,255,0.40);
+              }
+            }
+
+            .person-unit {
+              .info {
+                left: 130px !important;
+                bottom: -4px !important;
               }
             }
 
           }
 
         }
+
       }
 
     }

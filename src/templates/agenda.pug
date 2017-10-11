@@ -11,9 +11,11 @@ include _common
       type: '嘉宾致辞',
       detail: {
         people: [{
+          starter: '/致辞嘉宾：',
           name: '高韵斐',
           job: '上海文化广播影视集团有限公司总裁'
         },{
+          starter: '/致辞嘉宾：',
           name: '张勇',
           job: '阿里巴巴集团CEO'
         }]
@@ -119,8 +121,8 @@ include _common
           type: '演讲独奏',
           title: '人工智能的萌属性',
           people: [{
-            name: '龙泉寺',
-            job: '学诚法师'
+            name: '学诚法师',
+            job: '龙泉寺'
           }]
         },
         {
@@ -154,6 +156,7 @@ include _common
     },
     {
       tag: '新跨界狂享曲',
+      last: true,
       items: [
         {
           time: '16:30-16:45',
@@ -207,21 +210,27 @@ include _common
     }
   ]
 
-mixin person-unit(avatar, name, job)
+mixin person-unit(name, job, starter)
   .person-unit
-    .avatar=avatar
-    .name=`/${name}`
-    .job=job
+    .avatar(style=`background-image: url(${imagePath}avatars/${name}.png)`)
+      .info
+        if (starter)
+          .prefix=starter
+          .name=`${name}`
+        else
+          .name=`/${name}`
+        .job=job
 
 mixin tag(tagName)
   .tag=tagName
   .separator
 
-mixin slash-bar(n)
+mixin slash-bar(n, separator)
   .slashes-wrapper
     - for (var i = 0; i<n; i++)
       .slash-unit
-    .separator
+    if (separator)
+      .separator
 
 mixin agenda-unit(time, type, people, title)
   .agenda-unit
@@ -232,9 +241,9 @@ mixin agenda-unit(time, type, people, title)
         if(title)
           .title.pf-Medium=title
         if(people)
-          .detail
+          .people-wrapper
             each person in people
-              +person-unit('',person.name, person.job)
+              +person-unit(person.name, person.job, person.starter)
   .separator
 
 #agenda
@@ -247,11 +256,12 @@ mixin agenda-unit(time, type, people, title)
       .prelude
         each item in prelude
           +agenda-unit(item.time, item.type, item.detail ? item.detail.people : null)
-      +slash-bar(21)
+      +slash-bar(25, true)
       .rhapsodies
         each list in rhapsodies
           .rhapsody-unit
             +tag(list.tag)
             each item in list.items
               +agenda-unit(item.time, item.type, item.people, item.title)
-
+            if (!list.last)
+              +slash-bar(15)

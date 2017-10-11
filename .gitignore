@@ -6,3 +6,4 @@ node_modules
 src/**/*.html
 src/assets/images
 package-lock.json
+

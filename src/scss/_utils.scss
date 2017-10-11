@@ -21,9 +21,9 @@
   -webkit-box-orient: vertical;
 }
 
-@mixin bg-img($bg: no-repeat center center, $bgSize: cover) {
-  background: $bg;
-  background-size: $bgSize;
+@mixin bg-img($background: no-repeat center center, $size: cover) {
+  background: $background;
+  background-size: $size;
 }
 
 @mixin text-fill($color) {
