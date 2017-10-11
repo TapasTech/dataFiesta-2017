@@ -6,7 +6,7 @@ mixin section-unit(title, logos, path)
     .logos-wrapper
       each logo in logos
         .logo-unit
-          img(src=`${imagePath}${path}/${logo}.png`)
+          .logo(style=`background-image: url(${imagePath}${path}/${logo}.png)`)
 
 -
   var hosts = [
@@ -19,7 +19,7 @@ mixin section-unit(title, logos, path)
   '一财网',
   '东方财经·浦东',
   '第一财经APP',
-  'CBN Weekly'
+  'CBNWeekly'
   ];
   var prevPartners = [
     '淘宝网',

@@ -2,6 +2,13 @@ mixin title-bar(title)
   .title-wrapper
     .module-title=title
 
+mixin slash-bar(n, separator)
+  .slashes-wrapper
+    - for (var i = 0; i<n; i++)
+      .slash-unit
+    if (separator)
+      .separator
+
 -
   var imagePath = 'http://z.dtcj.com/cbndata/';
 

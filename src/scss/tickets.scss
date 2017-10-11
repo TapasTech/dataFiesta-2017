@@ -59,7 +59,10 @@
         @include Flex(row, center, center);
 
         .arrow-unit {
-          transition-duration: 1.2s;
+          &:after {
+            transition-duration: 0.2s;
+
+          }
         }
 
         .left {
@@ -73,8 +76,8 @@
           cursor: pointer;
           .arrow-unit {
             &:after {
-              //display: none;
-              visibility: hidden;
+              opacity: 0;
+
             }
           }
 

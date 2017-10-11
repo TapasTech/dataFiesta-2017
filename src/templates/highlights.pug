@@ -1,6 +1,6 @@
 include _common
 -
-  var sections = [
+  var modules = [
     {
       num: 1,
       title: '份权威数据报告',
@@ -38,7 +38,7 @@ include _common
     }
   ]
 
-mixin section-unit(data)
+mixin module-unit(data)
   .unit-wrapper
     .section-title
       .number=data.num
@@ -60,5 +60,5 @@ mixin section-unit(data)
 #highlights
   +title-bar('活动亮点')
   .content-wrapper
-    each datum in sections
-      +section-unit(datum)
+    each datum in modules
+      +module-unit(datum)

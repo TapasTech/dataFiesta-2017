@@ -1,3 +1,4 @@
+include _common
 
 -
   var contacts = [
@@ -17,9 +18,7 @@
   ];
 
 #contact.text-cyan
-  .slashes-wrapper
-    - for (var i = 0; i<20; i++)
-      .slash-unit
+  +slash-bar(20)
   .module-title 联系我们
   .detail-wrapper
     each contact in contacts

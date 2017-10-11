@@ -28,9 +28,10 @@ $wrapper-width: 1086px;
         text-align: center;
         @include Flex(row, center, center);
 
-        img {
-          max-width: 177px;
-          max-height: 60px;
+        .logo {
+          @include bg-img($size: contain);
+          width: 177px;
+          height: 60px;
         }
 
       }
