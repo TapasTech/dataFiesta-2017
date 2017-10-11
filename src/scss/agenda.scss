@@ -39,7 +39,7 @@
       width: 100%;
       @include Flex(column, flex-start, center);
       .prelude {
-        margin: 34px 0 32px 0;
+        margin: 34px 0 0 0;
         width: 100%;
         .agenda-unit {
           .time {
@@ -51,6 +51,9 @@
               border: 1px solid rgba(255, 255, 255, 0.40);
             }
           }
+        }
+        .separator:last-of-type {
+          margin-bottom: 0;
         }
       }
 
@@ -87,7 +90,6 @@
 
       }
 
-
       .separator {
         position: relative;
         left: 1px;
@@ -97,6 +99,18 @@
         height: 22px;
         margin: 5px auto;
         background: rgba(255, 255, 255, 0.40);
+      }
+
+      .slashes-wrapper {
+        @include slash-bar($color: $border-grey);
+        transform: translate(-50%, 0);
+        .separator {
+          order: -1;
+          transform: translate(-8px, 4px);
+          &:after {
+            @include diamond($translate: (-45%, 150%));
+          }
+        }
       }
 
       .rhapsodies {

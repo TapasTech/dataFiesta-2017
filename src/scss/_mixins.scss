@@ -1,4 +1,5 @@
 @import '_variables';
+@import '_utils';
 
 @mixin Underline($color, $width: 1px) {
   display: inline-block;
@@ -30,4 +31,12 @@
   font-size: $size;
   letter-spacing: -1.43px;
   @include Underline($color);
+}
+
+@mixin slash-bar($margin: 8px, $color: $slash-blue) {
+  @include Flex(row, center, flex-start);
+  .slash-unit {
+    @include slash($transform: skew(-60deg), $color: $color);
+    margin: 0 $margin;
+  }
 }

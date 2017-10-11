@@ -7,11 +7,7 @@
 
   .slashes-wrapper {
     margin-bottom: 50px;
-    @include Flex(row, center, flex-start);
-    .slash-unit {
-      margin: 0 8px;
-      @include slash($transform: skew(-60deg));
-    }
+    @include slash-bar();
   }
 
   .module-title {

@@ -4,5 +4,5 @@ node_modules
 /.idea
 /dist
 src/**/*.html
-src/assets/logos
+src/assets/images
 package-lock.json

@@ -217,6 +217,12 @@ mixin tag(tagName)
   .tag=tagName
   .separator
 
+mixin slash-bar(n)
+  .slashes-wrapper
+    - for (var i = 0; i<n; i++)
+      .slash-unit
+    .separator
+
 mixin agenda-unit(time, type, people, title)
   .agenda-unit
     .time=time
@@ -241,6 +247,7 @@ mixin agenda-unit(time, type, people, title)
       .prelude
         each item in prelude
           +agenda-unit(item.time, item.type, item.detail ? item.detail.people : null)
+      +slash-bar(21)
       .rhapsodies
         each list in rhapsodies
           .rhapsody-unit

@@ -3,7 +3,6 @@
 @import 'variables';
 
 $section-width: 266px;
-$border-color: rgba(255, 255, 255, 0.40);
 
 #highlights {
 
@@ -23,7 +22,7 @@ $border-color: rgba(255, 255, 255, 0.40);
       height: 259px;
       margin-bottom: 42px;
       padding-left: 24px;
-      border: 1px solid $border-color;
+      border: 1px solid $border-grey;
 
       .section-title {
         margin-top: -63px;
@@ -82,10 +81,10 @@ $border-color: rgba(255, 255, 255, 0.40);
         }
 
         &:after {
-          @include chevron($section-width/2, 45deg, left, $color: $border-color);
+          @include chevron($section-width/2, 45deg, left, $color: $border-grey);
         }
         &:before {
-          @include chevron($section-width/2, -45deg, right, $color: $border-color);
+          @include chevron($section-width/2, -45deg, right, $color: $border-grey);
         }
       }
 
