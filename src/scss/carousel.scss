@@ -8,50 +8,30 @@
   .rows-wrapper {
     overflow: hidden;
 
-
     .row-unit {
       @include Flex(row, center, center);
       width: 1920px;
 
-      /*animation: carousel 15s infinite;
-      @keyframes carousel {
-        0% {
-          transform: translate(0, 0);
-        }
-        100% {
-          transform: translate(-100%, 0);
-        }
-      }*/
-
       &:nth-of-type(2n) {
-        transform: translate(40%, 0);
-
+        transform: translate(80%, 0);
         // name, duration, timing-function, delay, direction, iteration-count, fill-mode, play-state
-        animation: carousel 10s linear infinite;
-        @keyframes carousel {
-          0% {
-            transform: translate(50%, 0);
-          }
+        animation: toLeft 10s linear 0s infinite forwards;
+        @keyframes toLeft {
           100% {
             transform: translate(-100%, 0);
           }
         }
       }
 
-      /*&:nth-of-type(2n+1) {
-        transform: translate(-40%, 0);
-
-        animation: carousel 10s infinite;
+      &:nth-of-type(2n+1) {
+        transform: translate(-100%, 0);
+        animation: carousel 10s linear 0s infinite forwards;
         @keyframes carousel {
-          0% {
-            transform: translate(-100%, 0);
-          }
           100% {
-            transform: translate(-50%, 0);
+            transform: translate(80%, 0);
           }
         }
-      }*/
-
+      }
 
       .person-unit {
         @include Flex(row, center, flex-start);
