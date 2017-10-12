@@ -1,215 +1,5 @@
 include _common
 
--
-  var prelude = [
-    {
-      time: '9:30-9:40',
-      type: '开场表演'
-    },
-    {
-      time: '9:40-10:00',
-      type: '嘉宾致辞',
-      detail: {
-        people: [{
-          starter: '/致辞嘉宾：',
-          name: '高韵斐',
-          job: '上海文化广播影视集团有限公司总裁'
-        },{
-          starter: '/致辞嘉宾：',
-          name: '张勇',
-          job: '阿里巴巴集团CEO'
-        }]
-      }
-    },
-    {
-      time: '10:00-10:40',
-      type: '《2017中国互联网消费生态大数据报告》发布'
-    },
-    {
-      time: '10:40-11:20',
-      type: '2017中国互联网消费升级商业力量发布'
-    },
-    {
-      time: '11:20-11:40',
-      type: '力量之音',
-      detail: {
-        title: '我们并不了解人工智能',
-        people: [{
-          name: '李开复',
-          job: '创新工场董事长兼CEO'
-        }]
-      }
-    },
-    {
-      time: '11:40-12:00',
-      type: '力量之音',
-      detail: {
-        title: '让城市没有陌生的角落',
-        people: [{
-          name: '戴威',
-          job: 'ofo小黄车CEO'
-        }]
-      }
-    }
-  ];
-
-  var rhapsodies = [
-    {
-      tag: '新消费狂享曲',
-      items: [
-        {
-          time: '13:30-13:45',
-          type: '演讲独奏',
-          title: '让吃变成一种娱乐',
-          people: [{
-            name: '侯毅',
-            job: '盒马鲜生CEO'
-          }]
-        },
-        {
-          time: '13:45-14:00',
-          type: '演讲独奏',
-          title: '全渠道体验宜家式生活',
-          people: [{
-            name: '朱昌来',
-            job: '宜家中国零售总裁'
-          }]
-        },
-        {
-          time: '13:30-13:45',
-          type: '圆桌和声',
-          title: '消费者的新消费',
-          people: [
-            {
-              name: '王小乔',
-              job: 'DT财经主编'
-            },
-            {
-              name: '王鑫',
-              job: '优信集团CMO'
-            },
-            {
-              name: '郭光东',
-              job: '饿了么CMO'
-            },
-            {
-              name: '卢中涛',
-              job: '挖财副总裁'
-            },
-            {
-              name: '王俊凯',
-              job: 'TFBOYS成员'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      tag: '新智慧狂享曲',
-      items: [
-        {
-          time: '15:15-15:30',
-          type: '演讲独奏',
-          title: '用智能课程代替传统老师',
-          people: [{
-            name: '王翌',
-            job: '英语流利说CEO'
-          }]
-        },
-        {
-          time: '15:00-15:15',
-          type: '演讲独奏',
-          title: '人工智能的萌属性',
-          people: [{
-            name: '学诚法师',
-            job: '龙泉寺'
-          }]
-        },
-        {
-          time: '15:30-16:30',
-          type: '圆桌和声',
-          title: '科技：让城市更智慧',
-          people: [
-            {
-              name: '李洋',
-              job: '36氪总编辑'
-            },
-            {
-              name: '袁雷鸣',
-              job: '蚂蚁金服副总裁'
-            },
-            {
-              name: '曹光宇',
-              job: 'EVCARD分时租车总经理'
-            },
-            {
-              name: '王文彬',
-              job: '菜鸟网络CTO'
-            },
-            {
-              name: '谭龙',
-              job: 'ETCP集团创始人兼CEO'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      tag: '新跨界狂享曲',
-      last: true,
-      items: [
-        {
-          time: '16:30-16:45',
-          type: '演讲独奏',
-          title: '创作者们在坚持什么',
-          people: [{
-            name: '侯鸿亮',
-            job: '正午阳光董事长'
-          }]
-        },
-        {
-          time: '16:45-17:45',
-          type: '圆桌和声',
-          title: '"IP、内容与数据"：跨界营销新模式',
-          people: [
-            {
-              name: '王洋',
-              job: 'CBNData COO'
-            },
-            {
-              name: '陆弢',
-              job: '阿里妈妈市场部总经理'
-            },
-            {
-              name: '杨振',
-              job: '优酷高级副总裁'
-            },
-            {
-              name: '丁博',
-              job: '网易云音乐副总裁'
-            },
-            {
-              name: '王镜钥',
-              job: '百草味CMO'
-            },
-            {
-              name: '李安',
-              job: '网易新闻市场部总经理'
-            }
-          ]
-        },
-      {
-        time: '16:30-16:45',
-        type: '演讲独奏',
-        title: '越过山丘，看到了什么',
-        people: [{
-        name: '高晓松',
-        job: '阿里娱乐战略委员会主席'
-        }]
-      }]
-    }
-  ]
-
 mixin person-unit(name, job, starter)
   .person-unit
     .avatar(style=`background-image: url(${imagePath}avatars/${name}.png)`)
@@ -225,7 +15,9 @@ mixin tag(tagName)
   .tag=tagName
   .separator
 
-mixin agenda-unit(time, type, people, title)
+mixin agenda-unit(item)
+  -
+    var {time, type, people, title} = item;
   .agenda-unit
     .time=time
     .program
@@ -248,13 +40,13 @@ mixin agenda-unit(time, type, people, title)
     .list-wrapper
       .prelude
         each item in prelude
-          +agenda-unit(item.time, item.type, item.detail ? item.detail.people : null)
+          +agenda-unit(item)
       +slash-bar(25, true)
       .rhapsodies
         each list in rhapsodies
           .rhapsody-unit
             +tag(list.tag)
             each item in list.items
-              +agenda-unit(item.time, item.type, item.people, item.title)
+              +agenda-unit(item)
             if (!list.last)
               +slash-bar(15)

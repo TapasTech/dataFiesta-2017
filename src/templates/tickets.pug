@@ -1,9 +1,20 @@
 include _common
 
+-
+  var tickets = [
+    'normal',
+    'VIP'
+  ]
+
+mixin ticket-unit(url)
+  .ticket-unit
+    .image(style=`background-image: url(${url})`)
+
 #tickets
   +title-bar('参会购票')
   .tickets-wrapper
-    .ticket-unit
+    each ticket in tickets
+      +ticket-unit(`${imagePath}tickets/ticket_${ticket}.png`)
   .control-panel
     .bar-dots
       - for (var i = 1; i<=2; i++)

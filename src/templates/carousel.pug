@@ -1,0 +1,37 @@
+include _common
+
+-
+  var peopleList = [];
+
+  function addPeopleUnit(unit) {
+    if (unit.people) {
+      var {people} = unit;
+      people.forEach(person => {
+        peopleList.push({
+          name: person.name,
+          job: person.job,
+          type: unit.type,
+          time: unit.time,
+          title: unit.title
+        })
+      })
+    }
+  }
+
+  prelude.forEach((unit) => {
+    addPeopleUnit(unit);
+  })
+
+  rhapsodies.forEach(unitList => {
+    unitList.items.forEach(unit => {
+      addPeopleUnit(unit)
+    })
+  })
+
+  console.log(peopleList.length)
+
+
+#carousel
+  each person in peopleList
+    .person=person.name
+

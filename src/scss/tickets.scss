@@ -6,9 +6,15 @@
   margin-bottom: 120px;
 
   .tickets-wrapper {
+    @include Flex(row, flex-start, center);
     margin: 43px 0 56px 0;
-
-    height: 338px;
+    .ticket-unit {
+      .image {
+        @include bg-img();
+        width: 758px;
+        height: 338px;
+      }
+    }
 
   }
 
