@@ -5,4 +5,74 @@
 #carousel {
   margin: 0 0 104px 0;
 
+  .rows-wrapper {
+    overflow: hidden;
+
+
+    .row-unit {
+      @include Flex(row, center, center);
+      width: 1920px;
+
+      /*animation: carousel 15s infinite;
+      @keyframes carousel {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(-100%, 0);
+        }
+      }*/
+
+      &:nth-of-type(2n) {
+        transform: translate(40%, 0);
+
+        // name, duration, timing-function, delay, direction, iteration-count, fill-mode, play-state
+        animation: carousel 10s linear infinite;
+        @keyframes carousel {
+          0% {
+            transform: translate(50%, 0);
+          }
+          100% {
+            transform: translate(-100%, 0);
+          }
+        }
+      }
+
+      /*&:nth-of-type(2n+1) {
+        transform: translate(-40%, 0);
+
+        animation: carousel 10s infinite;
+        @keyframes carousel {
+          0% {
+            transform: translate(-100%, 0);
+          }
+          100% {
+            transform: translate(-50%, 0);
+          }
+        }
+      }*/
+
+
+      .person-unit {
+        @include Flex(row, center, flex-start);
+        margin-right: 24px;
+
+        .type {
+          width: 32px;
+        }
+
+        .name {
+          font-size: 72px;
+        }
+
+        &.active {
+          color: $color-cyan;
+        }
+
+      }
+
+    }
+
+  }
+
 }

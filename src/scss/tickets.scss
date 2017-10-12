@@ -4,6 +4,7 @@
 
 #tickets {
   margin-bottom: 120px;
+  overflow: hidden;
 
   .tickets-wrapper {
     @include Flex(row, flex-start, center);

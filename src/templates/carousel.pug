@@ -28,10 +28,20 @@ include _common
     })
   })
 
-  console.log(peopleList.length)
+mixin personUnit(person)
+  .person-unit
+    .type=person.type
+    .name.pf-Medium=person.name
 
+mixin personRow(start, end)
+  .row-unit
+    - for (var i = start; i < end; i++)
+        +personUnit(peopleList[i])
 
 #carousel
-  each person in peopleList
-    .person=person.name
+  .rows-wrapper
+    +personRow(0, 6)
+    +personRow(6, 13)
+    +personRow(13, 19)
+    +personRow(20, 26)
 
