@@ -1,22 +1,24 @@
 const del = require('del');
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const plumber = require('gulp-plumber');
-const eslint = require('gulp-eslint');
+const esLint = require('gulp-eslint');
+const concat = require('gulp-concat');
+const sourceMaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const rollup = require('gulp-rollup');
 const sass = require('gulp-sass');
 const pug = require('gulp-pug');
 const notify = require('gulp-notify');
 const rename = require('gulp-rename');
-const rev = require('gulp-rev');
 const minifyHtml = require('gulp-htmlmin');
-const through = require('through2');
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
+const postCss = require('gulp-postcss');
+const autoPrefix = require('autoprefixer');
+const cssNano = require('cssnano');
 const browserSync = require('browser-sync').create();
-const assetsInjector = require('gulp-assets-injector')();
+// const gutil = require('gulp-util');
+// const rev = require('gulp-rev');
+// const through = require('through2');
+// const assetsInjector = require('gulp-assets-injector')();
 
 const rollupOptions = {
   format: 'iife',
@@ -45,9 +47,9 @@ gulp.task('scss', () => {
     .on('error', sass.logError);
   if (isProd) {
     stream = stream
-    .pipe(postcss([
-      autoprefixer(),
-      isProd && cssnano(),
+    .pipe(postCss([
+      autoPrefix(),
+      isProd && cssNano(),
     ]));
   }
   stream = stream
@@ -61,16 +63,21 @@ gulp.task('scss', () => {
 });
 
 gulp.task('js', () => {
-  let stream = gulp.src('src/app.js');
+  let name = 'app.js';
+  let distPath = DIST + '/assets/';
+  let stream = gulp.src(['src/js/*.js'])
+    .pipe(sourceMaps.init())
+    .pipe(concat(name))
+    .pipe(sourceMaps.write())
+    .pipe(gulp.dest(distPath));
   if (isProd) {
     stream = stream
       .pipe(rollup(Object.assign({
-        input: 'src/app.js',
+        input: distPath + name,
       }, rollupOptions)))
-      .pipe(uglify());
+      .pipe(uglify())
+      .pipe(gulp.dest(distPath));
   }
-  stream = stream
-    .pipe(gulp.dest(DIST + '/assets'));
   if (!isProd) stream = stream
     .pipe(browserSync.stream());
   return stream;
@@ -108,9 +115,9 @@ gulp.task('copy', () => {
 
 gulp.task('lint', () => {
   return gulp.src('src/**/*.js')
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    .pipe(esLint())
+    .pipe(esLint.format())
+    .pipe(esLint.failAfterError());
 });
 
 gulp.task('default', ['pug', 'scss', 'js', 'copy'], () => {

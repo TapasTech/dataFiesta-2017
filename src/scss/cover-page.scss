@@ -3,7 +3,7 @@
 @import 'variables';
 
 #cover-page {
-  min-height: 9/16 * 100vw;
+  margin-bottom: 120px;
   .content-wrapper {
     margin-top: 50vh;
     @include Flex(column, flex-start, center);

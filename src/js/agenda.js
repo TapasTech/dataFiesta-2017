@@ -3,6 +3,3 @@ $(() => {
   console.log('into js');
   
 });
-
-
-

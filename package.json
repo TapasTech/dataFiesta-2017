@@ -21,6 +21,7 @@
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-assets-injector": "^1.1.2",
+    "gulp-concat": "^2.6.1",
     "gulp-eslint": "^4.0.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-notify": "^3.0.0",
@@ -31,13 +32,14 @@
     "gulp-rev": "^8.0.0",
     "gulp-rollup": "^2.15.0",
     "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "precss": "^2.0.0",
+    "qiniu-go": "github:tapastech/qiniu-go#671df18d56bcdf1ca7654a4ff0d989ba654ee263",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.1",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "through2": "^2.0.3",
-    "qiniu-go": "github:tapastech/qiniu-go#671df18d56bcdf1ca7654a4ff0d989ba654ee263"
+    "through2": "^2.0.3"
   }
 }
