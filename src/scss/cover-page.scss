@@ -48,6 +48,24 @@
   }
 
   .content-wrapper {
+    position: relative;
+
+    .content-bg {
+      position: absolute;
+      top: -7vw;
+      width: 100vw;
+      @include Flex(row, space-between, center);
+      overflow: hidden;
+      .bg-mountain {
+        @include bg-geom(bg-mountain, 533px, 327px, $size: cover);
+
+        &:last-of-type {
+          transform: scaleX(-1) translate(-5vw, 6vw);
+        }
+
+      }
+    }
+
     margin-top: 32px;
     @include Flex(column, flex-start, center);
 

@@ -7,6 +7,9 @@ $section-width: 266px;
 #highlights {
 
   .content-wrapper {
+    @include bg-geom(bg-highlights, 100%);
+    background-size: 27%;
+    background-position: top;
     @include Flex(column wrap, flext-start, space-between);
     align-content: space-between;
     flex: 0;

@@ -45,10 +45,10 @@
   background: $bg-black;
 }
 
-@mixin bg-geom($name, $width, $height: $width, $format: '.png') {
+@mixin bg-geom($name, $width, $height: $width, $format: '.png', $size: contain) {
   width: $width;
   height: $height;
-  @include bg-img($url: #{$assets-url}bg/#{$name}#{$format}, $size: contain);
+  @include bg-img($url: #{$assets-url}bg/#{$name}#{$format}, $size: $size);
 }
 
 @mixin abs-locate($left, $top, $w-origin: 1440, $W: 100vw) {
