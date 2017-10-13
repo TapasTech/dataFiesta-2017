@@ -108,6 +108,18 @@ $opposite-direction-map: (top: bottom, right: left, bottom: top, left: right);
   @include square($size, $color, $transform: translate($translate) scale(1, 1) rotate(45deg))
 }
 
+// 走马灯弹幕动画
+@mixin carousel($id, $start: 80%, $end: -100%, $duration: 16s, $delay: 0s) {
+  transform: translateX($start);
+  // name, duration, timing-function, delay, direction, iteration-count, fill-mode, play-state
+  animation: carousel-#{$id} $duration linear $delay infinite forwards;
+  @keyframes carousel-#{$id} {
+    100% {
+      transform: translateX($end);
+    }
+  }
+}
+
 $pi: 3.14159265359;
 
 @function fact($number) {

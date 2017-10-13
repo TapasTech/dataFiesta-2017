@@ -2,49 +2,84 @@
 @import 'mixins';
 @import 'variables';
 
-@mixin carousel($id, $start: 80%, $end: -100%, $duration: 16s, $delay: 0s) {
-  transform: translateX($start);
-  // name, duration, timing-function, delay, direction, iteration-count, fill-mode, play-state
-  animation: carousel-#{$id} $duration linear $delay infinite forwards;
-  @keyframes carousel-#{$id} {
-    100% {
-      transform: translateX($end);
-    }
-  }
-}
-
 #carousel {
-  margin: 0 0 104px 0;
+  //margin: 0 0 104px 0;
+  padding-bottom: 104px;
 
   .rows-wrapper {
     overflow: hidden;
+    width: 100%;
 
     .row-unit {
-      @include Flex(row, center, center);
-      width: 1920px;
+      overflow: visible;
+      white-space: nowrap;
+      width: 100%;
 
       $period: 16s;
-      &:nth-of-type(2n-1) {
-        @include carousel(right, -100%, 80%, $duration: $period);
+      &:nth-of-type(1) {
+        @include carousel(right, -105%, 100%, $duration: $period);
       }
-      &:nth-of-type(2n) {
-        @include carousel(left, $duration: $period, $delay: $period/2);
+      &:nth-of-type(2) {
+        @include carousel(left, 100%, -135%, $duration: $period, $delay: $period * 3 / 4);
+      }
+      &:nth-of-type(3) {
+        @include carousel(right, -110%, 105%, $duration: $period, $delay: $period / 2);
+      }
+      &:nth-of-type(4) {
+        @include carousel(left, 100%, -100%, $duration: $period, $delay: $period / 4);
+      }
+
+      &:hover, &.paused {
+        animation-play-state: paused;
       }
 
       .person-unit {
-        @include Flex(row, center, flex-start);
+        position: relative;
+        display: inline-block;
+        overflow: visible;
         margin-right: 24px;
-
-        .type {
-          width: 32px;
+        .brief-wrapper {
+          @include Flex(row, center, flex-start);
+          .type {
+            width: 32px;
+          }
+          .name {
+            font-size: 72px;
+          }
         }
+        .detail-wrapper {
+          @include Flex(row, space-between, stretch);
+          display: none;
+          @include abs-locate(100px, 50%);
+          border: 2px solid $color-cyan;
+          .text-wrapper {
+            @include Flex(column, space-between, flex-start);
+            background: white;
+            color: #000;
+            .job {
 
-        .name {
-          font-size: 72px;
+            }
+            .type {
+
+            }
+          }
+          .avatar {
+            width: 168px;
+            height: 168px;
+            @include bg-img();
+          }
+
         }
 
         &.active {
           color: $color-cyan;
+        }
+
+        &:hover {
+          cursor: default;
+          .detail-wrapper {
+            display: flex;
+          }
         }
 
       }

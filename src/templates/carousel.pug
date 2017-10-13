@@ -30,9 +30,16 @@ include _common
 
 mixin personUnit(person)
   .person-unit
-    .type=person.type
-    .name.pf-Medium=person.name
-
+    .brief-wrapper
+      .type=person.type
+      .name.pf-Medium=person.name
+    .detail-wrapper
+      .text-wrapper
+        .job=person.job
+        .type=person.type
+        .title=person.title
+        .time=person.time
+      .avatar
 mixin personRow(start, end)
   .row-unit
     - for (var i = start; i < end; i++)
