@@ -12,8 +12,8 @@ const notify = require('gulp-notify');
 const rename = require('gulp-rename');
 const minifyHtml = require('gulp-htmlmin');
 const postCss = require('gulp-postcss');
-const autoPrefix = require('autoprefixer');
-const cssNano = require('cssnano');
+const autoPrefix = require('autoprefixer')();
+const cssNano = require('cssnano')();
 const browserSync = require('browser-sync').create();
 // const gutil = require('gulp-util');
 // const rev = require('gulp-rev');
@@ -37,22 +37,19 @@ const rollupOptions = {
 
 const DIST = 'dist';
 const isProd = process.env.NODE_ENV === 'production';
+let cssOutputStyle = isProd ? 'compressed' : 'expanded';
 
 gulp.task('clean', () => del(DIST));
 
 gulp.task('scss', () => {
-  let outputStyle = isProd ? 'compressed' : 'expanded';
   let stream = gulp.src('src/scss/index.scss')
     .pipe(sourceMaps.init())
-    .pipe(sass({outputStyle}))
+    .pipe(sass({outputStyle: cssOutputStyle}))
     .on('error', sass.logError)
     .pipe(sourceMaps.write());
   if (isProd) {
     stream = stream
-    .pipe(postCss([
-      autoPrefix(),
-      isProd && cssNano(),
-    ]));
+    .pipe(postCss([autoPrefix, cssNano]));
   }
   stream = stream
     .pipe(rename('styles.css'))
