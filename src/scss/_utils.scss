@@ -46,7 +46,7 @@ $default-color2: black;
 }
 
 // 为容器设置背景图片的常用方法
-@mixin bg-img($background: no-repeat center center, $size: cover, $url:'') {
+@mixin bg-img($background: no-repeat center center, $size: cover, $url:false) {
   background: $background;
   background-size: $size;
   @if($url) {
