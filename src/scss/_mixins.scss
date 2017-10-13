@@ -1,7 +1,7 @@
 @import '_variables';
 @import '_utils';
 
-@mixin Underline($color, $width: 1px) {
+@mixin Underline($color: white, $width: 1px) {
   display: inline-block;
   border-bottom: $width solid $color;
 }

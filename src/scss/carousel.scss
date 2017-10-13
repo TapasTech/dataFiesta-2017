@@ -2,6 +2,17 @@
 @import 'mixins';
 @import 'variables';
 
+@mixin carousel($id, $start: 80%, $end: -100%, $duration: 16s, $delay: 0s) {
+  transform: translateX($start);
+  // name, duration, timing-function, delay, direction, iteration-count, fill-mode, play-state
+  animation: carousel-#{$id} $duration linear $delay infinite forwards;
+  @keyframes carousel-#{$id} {
+    100% {
+      transform: translateX($end);
+    }
+  }
+}
+
 #carousel {
   margin: 0 0 104px 0;
 
@@ -12,25 +23,12 @@
       @include Flex(row, center, center);
       width: 1920px;
 
-      &:nth-of-type(2n) {
-        transform: translate(80%, 0);
-        // name, duration, timing-function, delay, direction, iteration-count, fill-mode, play-state
-        animation: toLeft 10s linear 0s infinite forwards;
-        @keyframes toLeft {
-          100% {
-            transform: translate(-100%, 0);
-          }
-        }
+      $period: 16s;
+      &:nth-of-type(2n-1) {
+        @include carousel(right, -100%, 80%, $duration: $period);
       }
-
-      &:nth-of-type(2n+1) {
-        transform: translate(-100%, 0);
-        animation: carousel 10s linear 0s infinite forwards;
-        @keyframes carousel {
-          100% {
-            transform: translate(80%, 0);
-          }
-        }
+      &:nth-of-type(2n) {
+        @include carousel(left, $duration: $period, $delay: $period/2);
       }
 
       .person-unit {

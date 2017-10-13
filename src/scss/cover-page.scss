@@ -4,9 +4,40 @@
 
 #cover-page {
   margin-bottom: 120px;
+
+  .cover-bg {
+    @include bg-img($url: $assets-url + 'bg/bg-home.png');
+    $HW_Ratio: 1612/2880;
+    width: 100vw;
+    height: 100vw * $HW_Ratio;
+  }
+
+  .info-wrapper {
+    position: absolute;
+    top: 120px;
+    //left: 84px;
+    left: 5.8vw;
+    font-family: DIN-Medium;
+    font-size: 48px !important;
+    color: #FFFFFF;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.50);
+    @include Flex(column, flex-start, flex-start);
+    .date {
+      @include Underline();
+      margin-bottom: 75px;
+      letter-spacing: -2px;
+
+    }
+    .city {
+      letter-spacing: -1.34px;
+      @include Underline();
+    }
+  }
+
   .content-wrapper {
-    margin-top: 50vh;
+    margin-top: 32px;
     @include Flex(column, flex-start, center);
+
     .title-wrapper {
       @include Flex(column, flex-start, center);
       margin-bottom: 32px;

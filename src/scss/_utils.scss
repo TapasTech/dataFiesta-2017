@@ -24,9 +24,12 @@ $default-color2: black;
   -webkit-box-orient: vertical;
 }
 
-@mixin bg-img($background: no-repeat center center, $size: cover) {
+@mixin bg-img($background: no-repeat center center, $size: cover, $url:'') {
   background: $background;
   background-size: $size;
+  @if($url) {
+    background-image: url($url);
+  }
 }
 
 @mixin text-fill($color) {
