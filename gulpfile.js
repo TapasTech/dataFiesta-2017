@@ -43,8 +43,10 @@ gulp.task('clean', () => del(DIST));
 gulp.task('scss', () => {
   let outputStyle = isProd ? 'compressed' : 'expanded';
   let stream = gulp.src('src/scss/index.scss')
+    .pipe(sourceMaps.init())
     .pipe(sass({outputStyle}))
-    .on('error', sass.logError);
+    .on('error', sass.logError)
+    .pipe(sourceMaps.write());
   if (isProd) {
     stream = stream
     .pipe(postCss([
