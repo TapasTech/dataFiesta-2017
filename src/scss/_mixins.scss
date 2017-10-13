@@ -51,8 +51,3 @@
   @include bg-img($url: #{$assets-url}bg/#{$name}#{$format}, $size: $size);
 }
 
-@mixin abs-locate($left, $top, $w-origin: 1440, $W: 100vw) {
-  position: absolute;
-  left: $left / $w-origin * $W;
-  top: $top / $w-origin * $W;
-}

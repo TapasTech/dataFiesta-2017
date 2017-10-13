@@ -13,17 +13,17 @@
 
     .bg-diamond {
       @include bg-geom(diamond, 223px);
-      @include abs-locate(337, 46);
+      @include abs-locate-vw(337, 46);
     }
 
     .bg-triangle {
       @include bg-geom(triangle, 225px);
-      @include abs-locate(152, 501);
+      @include abs-locate-vw(152, 501);
     }
 
     .bg-circle {
       @include bg-geom(circle-cyan, 197px);
-      @include abs-locate(1085, 580);
+      @include abs-locate-vw(1085, 580);
     }
 
   }

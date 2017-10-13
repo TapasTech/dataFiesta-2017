@@ -24,32 +24,7 @@ $section-width: 266px;
       width: $section-width;
       height: 259px;
       margin-bottom: 42px;
-      padding-left: 24px;
       border: 1px solid $border-grey;
-
-      .section-title {
-        margin-top: -63px;
-        white-space: nowrap;
-        letter-spacing: -0.67px;
-
-        .number {
-          font-size: 144px;
-          font-family: DIN-Black;
-          letter-spacing: -4.03px;
-          display: inline-block;
-          @include text-fill-linear(#E832B4, white);
-          &:nth-of-type(n-2) {
-            margin-right: -4px;
-          }
-        }
-
-        .title {
-          padding: 12px 6px 0 0;
-          background: $bg-black;
-          font-size: 24px;
-          display: inline-block;
-        }
-      }
 
       &:first-of-type {
         .section-title {
@@ -76,11 +51,14 @@ $section-width: 266px;
       &:last-of-type {
         height: 400px;
         border-bottom: none;
-        .section-content {
-          margin-top: 0;
-        }
-        .section-title {
-          white-space: normal;
+        .inner-wrapper {
+          .section-content {
+            margin-top: 0;
+          }
+          .section-title {
+            width: 80%;
+            white-space: normal;
+          }
         }
 
         &:after {
@@ -91,23 +69,64 @@ $section-width: 266px;
         }
       }
 
-      .section-content {
-        width: 324px;
-        margin: -26px 0 0 0;
-        padding: 16px 0 4px 0;
-        background: $bg-black;
-        letter-spacing: -0.45px;
-        .sub-wrapper {
-          .section-text {
-            margin: 2px 0 14px 0;
+      .inner-wrapper {
+        margin-left: 24px;
+        .section-title {
+          margin-top: -63px;
+          white-space: nowrap;
+          letter-spacing: -0.67px;
+          .number {
+            font-size: 144px;
+            font-family: DIN-Black;
+            letter-spacing: -4.03px;
+            display: inline-block;
+            @include text-fill-linear(#E832B4, white);
+            &:nth-of-type(n-2) {
+              margin-right: -4px;
+            }
+          }
+          .title {
+            padding: 12px 6px 0 0;
+            background: $bg-black;
+            font-size: 24px;
+            display: inline-block;
           }
         }
-        .subtitle {
-          font-size: 18px;
+
+        .section-content {
+          width: 324px;
+          margin: -26px 0 0 0;
+          padding: 16px 0 4px 0;
+          background: $bg-black;
+          letter-spacing: -0.45px;
+          .sub-wrapper {
+            .section-text {
+              margin: 2px 0 14px 0;
+            }
+          }
+          .subtitle {
+            font-size: 18px;
+          }
+          .section-text {
+            opacity: 0.9;
+          }
         }
-        .section-text {
-          opacity: 0.9;
-        }
+      }
+
+    }
+
+    .chevron {
+      @include bg-geom(chevron, 171px, 187px);
+      align-self: center;
+      transform: translateY(64px);
+    }
+
+    .slashes-wrapper {
+      position: absolute;
+      @include slash-bar();
+      @include abs-locate-px(-54, 480);
+      &:last-of-type {
+        @include abs-locate-px(232, 130);
       }
     }
 

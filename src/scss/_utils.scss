@@ -1,13 +1,33 @@
 $default-color1: cyan;
 $default-color2: black;
 
-@mixin Flex($flow, $justify, $align) {
+// 绝对定位元素
+@mixin abs-locate($left: 0, $top: 0) {
+  position: absolute;
+  left: $left;
+  top: $top;
+}
+
+// 以vw为单位进行绝对定位，参数为设计稿上的像素值
+@mixin abs-locate-vw($left: 0, $top: 0, $w-origin: 1440, $W: 100vw) {
+  // $w-origin: 设计稿的像素宽度
+  @include abs-locate($left / $w-origin * $W, $top / $w-origin * $W);
+}
+
+// 以px为单位进行绝对定位
+@mixin abs-locate-px($left: 0, $top: 0) {
+  @include abs-locate(#{$left}px, #{$top}px);
+}
+
+// flex布局
+@mixin Flex($flow: row, $justify: flex-start, $align: flex-start) {
   display: flex;
   flex-flow: $flow;
   justify-content: $justify;
   align-items: $align;
 }
 
+// 限定容器最大行数与高度
 @mixin clamp-line($line-num, $max-height) {
   display: -webkit-box;
   max-height: $max-height;
@@ -16,6 +36,7 @@ $default-color2: black;
   -webkit-box-orient: vertical;
 }
 
+// 溢出容器文本显示省略号
 @mixin multiline-ellipsis($line) {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -24,6 +45,7 @@ $default-color2: black;
   -webkit-box-orient: vertical;
 }
 
+// 为容器设置背景图片的常用方法
 @mixin bg-img($background: no-repeat center center, $size: cover, $url:'') {
   background: $background;
   background-size: $size;
@@ -32,18 +54,20 @@ $default-color2: black;
   }
 }
 
+// 文字填充自定义颜色
 @mixin text-fill($color) {
   background: $color;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+// 文字填充线性渐变颜色
 @mixin text-fill-linear($color1, $color2) {
   @include text-fill(linear-gradient(to bottom, $color1, $color2));
 }
 
-// mixin for triangles
-$opposite-direction: (top: bottom, right: left, bottom: top, left: right);
+// 绘制等腰直角三角形
+$opposite-direction-map: (top: bottom, right: left, bottom: top, left: right);
 @mixin triangle($size: 24px, $color: $default-color1, $direction: bottom) {
   $height: $size / 2;
   content: '';
@@ -52,9 +76,10 @@ $opposite-direction: (top: bottom, right: left, bottom: top, left: right);
   display: inline-block;
   border: $height solid transparent;
   border-#{$direction}: none;
-  border-#{map-get($opposite-direction, $direction)}: $height solid $color;
+  border-#{map-get($opposite-direction-map, $direction)}: $height solid $color;
 }
 
+// 绘制空心的等腰直角三角形
 @mixin hollow-triangle($arrow-size: 24px, $frame-width: 2px, $direction: left, $innerColor: $default-color2) {
   // only available for non-pseudo elements
   position: relative;
@@ -68,6 +93,7 @@ $opposite-direction: (top: bottom, right: left, bottom: top, left: right);
   }
 }
 
+// 绘制正方形
 @mixin square($size: 8px, $color: $default-color1, $transform: none) {
   content: '';
   display: inline-block;
@@ -77,6 +103,7 @@ $opposite-direction: (top: bottom, right: left, bottom: top, left: right);
   transform: $transform;
 }
 
+// 绘制菱形
 @mixin diamond($size: 8px, $color: $default-color1, $translate: (0,0)) {
   @include square($size, $color, $transform: translate($translate) scale(1, 1) rotate(45deg))
 }

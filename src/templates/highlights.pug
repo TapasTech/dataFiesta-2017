@@ -38,27 +38,31 @@ include _common
     }
   ]
 
-mixin module-unit(data)
+mixin module-unit(data, index)
   .unit-wrapper
-    .section-title
-      .number=data.num
-      .title.pf-Medium=data.title
-    .section-content
-      if data.subs
-        each sub in data.subs
-          .sub-wrapper
-            .subtitle.pf-Medium=sub.subtitle
-            .section-text=sub.detail
-      else
-        if data.strong
-          .section-text=data.text
-            span.pf-Semibold=data.strong
+    .inner-wrapper
+      .section-title
+        .number=data.num
+        .title.pf-Medium=data.title
+      .section-content
+        if data.subs
+          each sub in data.subs
+            .sub-wrapper
+              .subtitle.pf-Medium=sub.subtitle
+              .section-text=sub.detail
         else
-          .section-text=data.text
-
+          if data.strong
+            .section-text=data.text
+              span.pf-Semibold=data.strong
+          else
+            .section-text=data.text
+    if (index === 3)
+      .chevron
+      +slash-bar(8)
+      +slash-bar(8)
 
 #highlights
   +title-bar('活动亮点')
   .content-wrapper
-    each datum in modules
-      +module-unit(datum)
+    each datum, index in modules
+      +module-unit(datum, index)
