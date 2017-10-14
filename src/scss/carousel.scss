@@ -53,6 +53,9 @@
         .detail-wrapper {
           display: none;
           @include abs-locate(80%, 70%);
+          &.move-left {
+            @include abs-locate(-280px, 70%);
+          }
           z-index: 10;
           border: 2px solid $color-cyan;
           .text-wrapper {

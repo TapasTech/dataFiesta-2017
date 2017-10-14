@@ -7,7 +7,7 @@ $(() => {
   const $people = $('#agenda .people-wrapper');
   
   
-  $controlUnit.on(click, function(e) {
+  $controlUnit.on(CLICK, function(e) {
     $controlUnit.removeClass('active');
     $(this).addClass('active');
     if (!this.hasAttribute('data-detail')) {
