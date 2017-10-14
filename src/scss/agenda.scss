@@ -42,9 +42,11 @@
         width: 100%;
         .agenda-unit {
           .time {
+            width: 50%;
             line-height: 51px;
           }
           .program {
+            width: 50%;
             .content {
               padding: 12px 16px;
               border: 1px solid rgba(255, 255, 255, 0.40);
@@ -65,37 +67,35 @@
         .agenda-unit:nth-child(3) {
           .program {
             .content {
-              width: 290px;
               padding-bottom: 50px;
               .people-wrapper {
-                @include Flex(row, space-between, center);
+                @include Flex(row, space-between, flex-start);
+                width: 206px;
                 background: $bg-black;
-                transform: translate(-53%, 0);
+                transform: translate(-84%, 0);
                 white-space: nowrap;
                 overflow: visible;
                 .person-unit {
                   position: relative;
                   margin-top: 0 !important;
                   display: inline-block;
-                  margin-right: 50px;
+                  margin-right: 20px;
                   .avatar-wrapper {
                     .avatar {
                       position: static;
-                      .info {
-                        max-width: 100%;
-                        left: 0;
-                        top: 150px;
-                        transform: translate(18%, 0);
-                        font-size: 16px;
-                        .job {
-                          width: 160px;
-                          white-space: normal;
-                        }
-                      }
+                      width: 166px;
+                      height: 166px;
                     }
+                  }
+                  .info-wrapper {
+                    margin-left: 24px;
+                    font-size: 16px;
+                    width: 160px;
+                    white-space: normal;
                   }
                 }
                 &.brief {
+                  width: 290px;
                   transform: translate(0, 0);
                   margin-bottom: -32px;
                   .person-unit {
@@ -134,7 +134,7 @@
         width: 100%;
         .time {
           display: inline-block;
-          width: 50%;
+          width: 30%;
           flex-shrink: 0;
           padding-right: 12px;
           text-align: end;
@@ -143,7 +143,7 @@
         }
         .program {
           display: inline-block;
-          width: 50%;
+          width: 70%;
           .content {
             display: inline-block;
             .type {
@@ -183,9 +183,9 @@
 
                 .info-wrapper {
                   white-space: nowrap;
-                  z-index:10;
+                  z-index: 10;
                   &.static {
-                    margin-left: $gap-left;
+                    //margin-left: $gap-left;
                     margin-bottom: -14px;
                     .name, .job {
                       display: inline-block;
@@ -216,44 +216,83 @@
       .slashes-wrapper {
         @include slash-bar($color: $border-grey);
         .separator {
-          transform: translate(-8px, 4px);
+          transform: translate(0, 4px);
+          margin-bottom: 36px;
         }
       }
 
       .rhapsodies {
         @include Flex(row, center, flex-start);
-        margin-left: -160px;
-        .rhapsody-unit {
-          @include Flex(column, flex-start, center);
+
+        .rhapsody-unit-wrapper {
+          position: relative;
           width: 418px;
-          .tag {
-            position: relative;
-            z-index: 10;
-            transform: translate(-56px, 10px);
-            width: 152px;
-            padding: 2px 0 2px 8px;
-            background: linear-gradient(to right, #003CB4, #EB32B4);
-            font-size: 23px;
-            letter-spacing: -0.66px;
-            &:after {
-              $height: 36px;
-              @include triangle($height, #EB32B4, right);
-              display: inline-block;
-              position: absolute;
-              top: 0;
-              right: -$height/2;
-            }
-            & + .separator {
-              height: 32px;
+
+          &:not(:last-of-type) {
+            border-right: 1px solid rgba(255, 255, 255, 0.40);
+          }
+
+          &:not(:first-of-type) {
+            .tag {
+              &:before {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                height: 1px;
+                $length: 48px;
+                width: $length;
+                left: -$length;
+                top: 50%;
+                z-index: 1;
+                background-color: rgba(255, 255, 255, 0.40);
+              }
             }
           }
 
-          .slashes-wrapper {
-            transform: translate(50%, 0);
+          .rhapsody-unit {
+            @include Flex(column, flex-start, center);
+            width: 418px;
+            margin-top: -29px;
+            .tag {
+              position: relative;
+              left: -30px;
+              z-index: 10;
+              transform: translate(-56px, 10px);
+              width: 152px;
+              padding: 2px 0 2px 8px;
+              background: linear-gradient(to right, #003CB4, #EB32B4);
+              font-size: 23px;
+              letter-spacing: -0.66px;
+              &:after {
+                $height: 36px;
+                @include triangle($height, #EB32B4, right);
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                right: -$height/2;
+              }
+              & + .separator {
+                height: 32px;
+              }
+            }
+
+            .separator {
+              margin: 0 70% 0 30%;
+            }
+
+            .tag-wrapper + .separator {
+              height: 36px;
+            }
+
+            .slashes-wrapper {
+              position: absolute;
+              bottom: -10px;
+              transform: translate(21.5%, 0);
+            }
           }
 
           &:last-of-type {
-            .separator:last-of-type {
+            .agenda-unit ~ .separator:last-child {
               position: relative;
               height: 78px;
               &:after {
@@ -264,28 +303,6 @@
             }
           }
 
-          &:not(:first-child) {
-            .tag {
-              &:before {
-                z-index: -1;
-                content: '';
-                display: inline-block;
-                position: absolute;
-                transform: translate(-30px, 14px);
-                width: 21px;
-                height: 1382px;
-                border-left: 1px solid rgba(255, 255, 255, 0.40);
-                border-top: 1px solid rgba(255, 255, 255, 0.40);
-              }
-            }
-
-            .person-unit {
-              .info {
-                left: 130px !important;
-                bottom: -4px !important;
-              }
-            }
-          }
         }
       }
     }

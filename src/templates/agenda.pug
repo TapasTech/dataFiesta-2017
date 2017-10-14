@@ -13,8 +13,9 @@ mixin person-unit(name, job, starter)
       .job=job
 
 mixin tag(tagName)
-  .tag=tagName
-  .separator
+  .tag-wrapper
+    .tag=tagName
+    //.separator
 
 mixin agenda-unit(item)
   -
@@ -42,12 +43,14 @@ mixin agenda-unit(item)
       .prelude
         each item in prelude
           +agenda-unit(item)
-      +slash-bar(25, true)
+      +slash-bar(23, true)
       .rhapsodies
         each list in rhapsodies
-          .rhapsody-unit
-            +tag(list.tag)
-            each item in list.items
-              +agenda-unit(item)
-            if (!list.last)
-              +slash-bar(15)
+          .rhapsody-unit-wrapper
+            .rhapsody-unit
+              +tag(list.tag)
+              .separator
+              each item in list.items
+                +agenda-unit(item)
+              if (!list.last)
+                +slash-bar(16)
