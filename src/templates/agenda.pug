@@ -2,14 +2,15 @@ include _common
 
 mixin person-unit(name, job, starter)
   .person-unit
-    .avatar(style=`background-image: url(${imagePath}avatars/${name}.png)`)
-      .info
-        if (starter)
-          .prefix=starter
-          .name=`${name}`
-        else
-          .name=`/${name}`
-        .job=job
+    .avatar-wrapper
+      .avatar(style=`background-image: url(${imagePath}avatars/${name}.png)`)
+    .info-wrapper
+      if (starter)
+        .prefix=starter
+        .name=`${name}`
+      else
+        .name=`/${name}`
+      .job=job
 
 mixin tag(tagName)
   .tag=tagName
