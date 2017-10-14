@@ -9,7 +9,6 @@
   }
   .content-wrapper {
     @include Flex(column, flex-start, center);
-
     .control-bar {
       @include Flex(row, center, flex-start);
       .control-unit {
@@ -38,11 +37,9 @@
     .list-wrapper {
       width: 100%;
       @include Flex(column, flex-start, center);
-
       .prelude {
         margin: 34px 0 0 0;
         width: 100%;
-
         .agenda-unit {
           .time {
             line-height: 51px;
@@ -64,52 +61,63 @@
               }
             }
           }
-
         }
-
         .agenda-unit:nth-child(3) {
           .program {
             .content {
-              width: 206px;
+              width: 290px;
               padding-bottom: 50px;
               .people-wrapper {
                 @include Flex(row, space-between, center);
                 background: $bg-black;
-                transform: translate(-93%, 0);
+                transform: translate(-53%, 0);
                 white-space: nowrap;
                 overflow: visible;
                 .person-unit {
                   position: relative;
-                  height: 225px;
                   margin-top: 0 !important;
                   display: inline-block;
                   margin-right: 50px;
-                  .avatar {
-                    position: static;
-                    .info {
-                      max-width: 100%;
-                      left: 0;
-                      top: 150px;
-                      transform: translate(18%, 0);
-                      font-size: 16px;
-                      .job {
-                        width: 160px;
-                        white-space: normal;
+                  .avatar-wrapper {
+                    .avatar {
+                      position: static;
+                      .info {
+                        max-width: 100%;
+                        left: 0;
+                        top: 150px;
+                        transform: translate(18%, 0);
+                        font-size: 16px;
+                        .job {
+                          width: 160px;
+                          white-space: normal;
+                        }
                       }
                     }
                   }
                 }
-
+                &.brief {
+                  transform: translate(0, 0);
+                  margin-bottom: -32px;
+                  .person-unit {
+                    margin-right: 0;
+                  }
+                  .info-wrapper {
+                    margin-left: 0 !important;
+                    margin-right: 8px;
+                    width: 176px;
+                    white-space: normal;
+                    .prefix {
+                      display: none;
+                    }
+                  }
+                }
               }
-
             }
           }
         }
-
         .separator:last-of-type {
           margin-bottom: 0;
         }
-
         & + .slashes-wrapper {
           transform: translate(-50%, 0);
           .separator {
@@ -118,11 +126,8 @@
               @include diamond($translate: (-45%, 150%));
             }
           }
-
         }
-
       }
-
       .agenda-unit {
         @include Flex(row, center, flex-start);
         font-size: 18px;
@@ -141,27 +146,28 @@
           width: 50%;
           .content {
             display: inline-block;
-
             .type {
               color: $color-cyan;
             }
             .people-wrapper {
-              //position: relative;
-              //left: -26px;
               .person-unit {
                 position: relative;
+                @include Flex(row, flex-start, flex-end);
                 opacity: 0.9;
                 letter-spacing: -0.39px;
                 font-size: 14px;
-                .avatar-wrapper {
 
+                $gap-left: 36px;
+                .avatar-wrapper {
+                  position: relative;
+                  left: -26px;
+                  margin-right: -$gap-left;
                   .avatar {
-                    position: relative;
-                    left: -26px;
                     $avatar-size: 146px;
                     width: $avatar-size;
                     height: $avatar-size;
                     @include bg-img();
+                    background-color: $bg-black;
                     .info {
                       position: absolute;
                       display: block;
@@ -176,12 +182,10 @@
                 }
 
                 .info-wrapper {
-                  position: absolute;
-                  left: 100px;
-                  bottom: -20px;
                   white-space: nowrap;
+                  z-index:10;
                   &.static {
-                    position: static;
+                    margin-left: $gap-left;
                     margin-bottom: -14px;
                     .name, .job {
                       display: inline-block;
@@ -189,7 +193,6 @@
                     }
                   }
                 }
-
                 &:not(:first-child) {
                   margin-top: 16px;
                 }
@@ -197,7 +200,6 @@
             }
           }
         }
-
       }
 
       .separator {
@@ -244,7 +246,6 @@
             & + .separator {
               height: 32px;
             }
-
           }
 
           .slashes-wrapper {
@@ -284,14 +285,9 @@
                 bottom: -4px !important;
               }
             }
-
           }
-
         }
-
       }
-
     }
-
   }
 }
