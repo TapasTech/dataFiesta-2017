@@ -5,7 +5,7 @@
 #agenda {
   margin: 0 0 108px 0;
   .title-wrapper {
-    margin: 104px auto 16px auto;
+    margin: 0 auto 16px auto;
   }
   .content-wrapper {
     @include Flex(column, flex-start, center);

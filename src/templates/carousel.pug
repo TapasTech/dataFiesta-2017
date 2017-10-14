@@ -36,10 +36,10 @@ mixin personUnit(person)
     .detail-wrapper
       .text-wrapper
         .job=person.job
-        .type=person.type
+        .type.pf-Medium=person.type
         .title=person.title
         .time=person.time
-      .avatar
+      .avatar(style=`background-image: url(${imagePath}avatars/${person.name}.png)`)
 mixin personRow(start, end)
   .row-unit
     - for (var i = start; i < end; i++)
