@@ -3,40 +3,39 @@ include _common
 -
   var tickets = [
     {
-      img: 'normal',
-      link: 'fake-url-normal-ticket'
-    },
-    {
       img: 'VIP',
       link: 'fake-url-VIP-ticket'
+    },
+    {
+      img: 'normal',
+      link: 'fake-url-normal-ticket',
+      selected: true
     }
   ]
 
 mixin ticket-unit(ticket)
-  .ticket-unit
+  div(class=`ticket-unit ${ticket.selected ? 'selected' : ''}`)
     .image(style=`background-image: url(${imagePath}tickets/ticket_${ticket.img}.png)`)
     a.text.pf-Medium(href=`${ticket.link}`, target="_blank").
       立即购票
 
+mixin arrow(direction, move)
+  .arrow
+    div(class=`arrow-unit ${direction}`, data-move=move)
 
 #tickets
   +title-bar('参会购票')
-  .tickets-wrapper
+  .tickets-wrapper.selected-2
     each ticket in tickets
       +ticket-unit(ticket)
   .control-panel
     .bar-dots
-      - for (var i = 1; i<=2; i++)
-        if (i===2)
-          .dot-unit.selected
-        else
-          .dot-unit
+      each ticket in tickets
+        .dot-unit
     .bar-info
-      .arrow
-        .arrow-unit.left
+      +arrow('left', -1)
       .info-wrapper
         .info-text
           .text.
             *购票说明：本项目为全国联网销售，与现场座位一一对应，采用【短信电子票】模式，请用户在购买流程中身份证一栏填写准确的手机号。请于演出当天，持官方通知短信，至演出现场换票入场。
-      .arrow
-        .arrow-unit.right
+      +arrow('right', 1)

@@ -7,19 +7,42 @@
   overflow: hidden;
 
   .tickets-wrapper {
-    @include Flex(row, flex-start, center);
+    @include Flex(row, center, center);
     margin: 43px 0 56px 0;
+    $numTickets: 2;
+    @for $index from 1 through $numTickets {
+      &.selected-#{$index} {
+        .ticket-unit {
+          transform: translateX((($numTickets + 1)/2 - $index) * 100%);
+          &:not(.selected) {
+            filter: grayscale(70%) brightness(0.5);
+            transform: translate((($numTickets + 1)/2 - $index) * 100%, 20px) scale(0.9);
+          }
+        }
+        & ~ .control-panel {
+          .bar-dots {
+            .dot-unit {
+              @include hollow-diamond();
+              &:nth-of-type(#{$index}) {
+                @include diamond();
+              }
+            }
+          }
+        }
+      }
+    }
+
     .ticket-unit {
       position: relative;
-
+      transition-duration: 1000ms;
       .image {
         @include bg-img();
+        background-size: contain;
         width: 744px;
         height: 338px;
       }
       .text {
-        position: absolute;
-        @include abs-locate-px(442, 225);
+        @include abs-locate-px(432, 225);
         font-size: 36px;
         &:before, &:after {
           @include hollow-diamond();
@@ -32,24 +55,15 @@
         }
       }
     }
-
   }
 
   .control-panel {
-
     .bar-dots {
       @include Flex(row, center, flex-start);
       .dot-unit {
-        @include diamond();
         $gap: 24px;
         margin: 0 $gap/2;
-        background: transparent;
-        border: 1px solid $color-cyan;
-        &.selected {
-          background: $color-cyan;
-        }
       }
-
     }
 
     .bar-info {
@@ -84,7 +98,6 @@
         .arrow-unit {
           &:after {
             transition-duration: 0.2s;
-
           }
         }
 
@@ -103,13 +116,8 @@
 
             }
           }
-
         }
-
       }
-
     }
-
   }
-
 }

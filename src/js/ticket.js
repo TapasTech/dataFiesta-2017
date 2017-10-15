@@ -2,15 +2,23 @@ $(function () {
   
   console.log('ticket');
   
-  var tickets = [
-    {
-      img: 'normal',
-      link: 'fake-url-normal-ticket'
-    },
-    {
-      img: 'VIP',
-      link: 'fake-url-VIP-ticket'
+  const numTickets = 2;
+  let prevTicketIndex = 2;
+  
+  const $ticketsWrapper = $('#tickets .tickets-wrapper');
+  const $ticketUnits = $ticketsWrapper.find('.ticket-unit');
+  const $arrows = $('#tickets .arrow');
+  $arrows.on(CLICK, function (e) {
+    const dataMove = parseInt($(this).find('.arrow-unit').attr('data-move'));
+    const nextTicketIndex = prevTicketIndex + dataMove;
+    if (nextTicketIndex <= numTickets && nextTicketIndex >= 1) {
+       // within valid range of tickets
+      $ticketsWrapper.removeClass('selected-' + prevTicketIndex);
+      $ticketsWrapper.addClass('selected-' + nextTicketIndex);
+      $ticketUnits.removeClass('selected');
+      $($ticketUnits[nextTicketIndex - 1]).addClass('selected');
+      prevTicketIndex = nextTicketIndex;
     }
-  ]
+  })
   
 });
