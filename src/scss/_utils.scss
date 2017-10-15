@@ -107,6 +107,12 @@ $opposite-direction-map: (top: bottom, right: left, bottom: top, left: right);
 @mixin diamond($size: 8px, $color: $default-color1, $translate: (0,0)) {
   @include square($size, $color, $transform: translate($translate) scale(1, 1) rotate(45deg))
 }
+// 空心菱形
+@mixin hollow-diamond($size: 8px, $color: transparent, $translate: (0,0)) {
+  @include square($size, $color, $transform: translate($translate) scale(1, 1) rotate(45deg));
+  //background: transparent;
+  border: 1px solid $default-color1;
+}
 
 // 走马灯弹幕动画
 @mixin carousel($id, $start: 80%, $end: -100%, $duration: 16s, $delay: 0s) {

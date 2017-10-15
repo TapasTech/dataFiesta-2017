@@ -10,10 +10,26 @@
     @include Flex(row, flex-start, center);
     margin: 43px 0 56px 0;
     .ticket-unit {
+      position: relative;
+
       .image {
         @include bg-img();
-        width: 758px;
+        width: 744px;
         height: 338px;
+      }
+      .text {
+        position: absolute;
+        @include abs-locate-px(442, 225);
+        font-size: 36px;
+        &:before, &:after {
+          @include hollow-diamond();
+        }
+        &:hover {
+          color: $color-cyan;
+          &:before, &:after {
+            @include diamond();
+          }
+        }
       }
     }
 
