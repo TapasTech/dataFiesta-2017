@@ -10,28 +10,10 @@
     $HW_Ratio: 1612/2880;
     width: 100vw;
     height: 100vw * $HW_Ratio;
-
-    .bg-diamond {
-      @include bg-geom(diamond, 223px);
-      @include abs-locate-vw(337, 46);
-    }
-
-    .bg-triangle {
-      @include bg-geom(triangle, 225px);
-      @include abs-locate-vw(152, 501);
-    }
-
-    .bg-circle {
-      @include bg-geom(circle-cyan, 197px);
-      @include abs-locate-vw(1085, 580);
-    }
-
   }
 
   .info-wrapper {
-    position: absolute;
-    top: 120px;
-    left: 5.8vw;
+    @include abs-locate-vw(84, 192);
     @include Flex(column, flex-start, flex-start);
     font-family: DIN-Medium;
     font-size: 48px;
@@ -57,8 +39,7 @@
       @include Flex(row, space-between, center);
       overflow: hidden;
       .bg-mountain {
-        @include bg-geom(bg-mountain, 533px, 327px, $size: cover);
-
+        @include bg-geom(bg-mountain, 533px, 327px, $size: contain);
         &:last-of-type {
           transform: scaleX(-1) translate(-5vw, 6vw);
         }
