@@ -6,7 +6,8 @@ $mobile: "(max-width: 720px)";
 $iphone5: "(max-width: 320px)";
 $iphone6: "(max-width: 375px)";
 $iphone6p: "(max-width: 414px)";
-$mobile: "(max-width: 768px)";
+$phones: "(max-width: 767px)"; // only cellphones, excluding iPads
+$mobile: "(max-width: 768px)"; // including phones and iPads
 $PC: "(min-width: 769px)";
 
 // 绝对定位元素

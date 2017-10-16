@@ -2,37 +2,37 @@ include _common
 
 -
   var items = [
-  {
-  link: '#cover-page',
-  text: '数据盛典'
-  },{
-  link: '#highlights',
-  text: '活动亮点'
-  },{
-  link: '#agenda',
-  text: '活动流程'
-  },{
-  link: '#tickets',
-  text: '参会购票'
-  },{
-  link: 'http://z.dtcj.com/cbndata/fiesta/2016/index.html',
-  text: '往期回顾',
-  blank: true
-  },{
-  link: '#contact',
-  text: '联系我们'
-  }
+    {
+      link: '#cover-page',
+      text: '数据盛典'
+    }, {
+      link: '#highlights',
+      text: '活动亮点'
+    }, {
+      link: '#agenda',
+      text: '活动流程'
+    }, {
+      link: '#tickets',
+      text: '参会购票'
+    }, {
+      link: 'http://z.dtcj.com/cbndata/fiesta/2016/index.html',
+      text: '往期回顾',
+      blank: true
+    }, {
+      link: '#contact',
+      text: '联系我们'
+    }
   ];
 
   var logos = [
-  {
-    src: `${imagePath}/logos/logo_yicai.png`,
-    href: 'http://www.yicai.com/'
-  },
-  {
-    src: `${imagePath}/logos/CBNData_logo.png`,
-    href: 'http://www.cbndata.com/'
-  }
+    {
+      src: `${imagePath}/logos/logo_yicai.png`,
+      href: 'http://www.yicai.com/'
+    },
+    {
+      src: `${imagePath}/logos/CBNData_logo.png`,
+      href: 'http://www.cbndata.com/'
+    }
   ]
 
 nav#navbar
@@ -40,9 +40,13 @@ nav#navbar
     each logo in logos
       a.logo-unit(href=logo.href, target='_blank')
         img(src=logo.src)
-  .items-wrapper.pf-Regular
-    each item in items
-      if (item.blank)
-        a.nav-item(href=item.link, target='_blank')=item.text
-      else
-        a.nav-item(href=item.link)=item.text
+  .menus-wrapper
+    .items-wrapper.pf-Regular
+      each item in items
+        if (item.blank)
+          a.nav-item(href=item.link, target='_blank')=item.text
+        else
+          a.nav-item(href=item.link)=item.text
+    .menu-btn.mobile-only
+      - for (var i = 0; i<3; i++)
+        .btn-bar

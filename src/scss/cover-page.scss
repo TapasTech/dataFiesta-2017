@@ -5,18 +5,30 @@
 #cover-page {
   margin-bottom: 120px;
 
-  .cover-bg {
-    @include bg-img($url: $assets-url + 'bg/bg-home.png');
-    $HW_Ratio: 1612/2880;
-    width: 100vw;
-    height: 100vw * $HW_Ratio;
+  @media #{$mobile} {
+    margin-top: 48px;
+    .cover-bg {
+      @include bg-img($url: $assets-url + 'bg/bg-cover-mobile.png');
+      $HW_Ratio: 1028/640;
+      width: 100vw;
+      height: 100vw * $HW_Ratio;
+    }
   }
 
+  @media #{$PC} {
+    .cover-bg {
+      @include bg-img($url: $assets-url + 'bg/bg-home.png');
+      $HW_Ratio: 1612/2880;
+      width: 100vw;
+      height: 100vw * $HW_Ratio;
+    }
+  }
+
+
   .info-wrapper {
-    @include abs-locate-vw(84, 192);
+
     @include Flex(column, flex-start, flex-start);
     font-family: DIN-Medium;
-    font-size: 48px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.50);
     .date {
       @include Underline();
@@ -27,6 +39,23 @@
       letter-spacing: -1.34px;
       @include Underline();
     }
+
+    @media #{$PC} {
+      @include abs-locate-vw(84, 192);
+      font-size: 48px;
+
+    }
+
+    @media #{$mobile} {
+      @include abs-locate-vw(320, 2100);
+      font-size: 6vw;
+      position: absolute;
+      .date {
+        margin-bottom: 25px;
+      }
+    }
+
+
   }
 
   .content-wrapper {
@@ -55,8 +84,15 @@
       @include Flex(column, flex-start, center);
       margin-bottom: 32px;
       .module-title {
-        @include module-title(white, 48px)
+        @include module-title(white, 48px);
+
+        @media #{$mobile} {
+          font-size: 28px;
+        }
+
       }
+
+
     }
 
     .text-wrapper {
