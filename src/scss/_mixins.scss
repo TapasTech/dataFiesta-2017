@@ -26,11 +26,14 @@
   @include slash($width: $width, $height: $length, $color: $color, $transform: skew($skew));
 }
 
-@mixin module-title($color: $color-cyan, $size: 51px) {
+@mixin module-title($color: $color-cyan, $size: 51px, $size-mobile: 28px) {
   @extend .pf-Medium;
   font-size: $size;
   letter-spacing: -1.43px;
   @include Underline($color);
+  @media #{$mobile} {
+    font-size: $size-mobile;
+  }
 }
 
 @mixin slash-bar($margin: 8px, $color: $slash-blue) {

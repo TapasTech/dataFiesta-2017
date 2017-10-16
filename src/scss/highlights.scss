@@ -10,15 +10,25 @@ $section-width: 266px;
   background-position: 0 95%;
 
   .content-wrapper {
-    @include bg-geom(bg-highlights, 100%);
+    @media #{$PC} {
+      @include bg-geom(bg-highlights, 100%);
+    }
     background-size: 27%;
     background-position: top;
-    @include Flex(column wrap, flext-start, space-between);
-    align-content: space-between;
-    flex: 0;
-    height: 1000px;
-    max-width: 1048px;
     margin: 46px auto;
+
+    @media #{$PC} {
+      @include Flex(column wrap, flext-start, space-between);
+      align-content: space-between;
+      flex: 0;
+      height: 1000px;
+      max-width: 1048px;
+    }
+    @media #{$mobile} {
+      @include Flex(column nowrap, flex-start, flex-start);
+      padding-left: 18px;
+    }
+
 
     .unit-wrapper {
       position: relative;
@@ -132,6 +142,9 @@ $section-width: 266px;
           }
           .section-text {
             opacity: 0.9;
+            @media #{$mobile} {
+              max-width: 266px;
+            }
           }
         }
       }
