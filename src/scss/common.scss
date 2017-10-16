@@ -6,6 +6,18 @@ body {
   color: white;
   font-size: 16px;
 
+  @media #{$mobile} {
+    .pc-only {
+      display: none !important;
+    }
+  }
+
+  @media #{$PC} {
+    .mobile-only {
+      display: none !important;
+    }
+  }
+
   .title-wrapper {
     text-align: center;
     .module-title {

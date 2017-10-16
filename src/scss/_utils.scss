@@ -1,6 +1,14 @@
 $default-color1: cyan;
 $default-color2: black;
 
+// common device screen width
+$mobile: "(max-width: 720px)";
+$iphone5: "(max-width: 320px)";
+$iphone6: "(max-width: 375px)";
+$iphone6p: "(max-width: 414px)";
+$mobile: "(max-width: 768px)";
+$PC: "(min-width: 769px)";
+
 // 绝对定位元素
 @mixin abs-locate($left: 0, $top: 0) {
   position: absolute;
