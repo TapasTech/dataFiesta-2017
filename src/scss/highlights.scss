@@ -6,6 +6,9 @@ $section-width: 266px;
 
 #highlights {
 
+  @include bg-geom(bg-mountain-full, 100%);
+  background-position: 0 95%;
+
   .content-wrapper {
     @include bg-geom(bg-highlights, 100%);
     background-size: 27%;

@@ -4,7 +4,11 @@
 
 #tickets {
   margin-bottom: 120px;
+  padding-top: 108px;
   overflow: hidden;
+
+  @include bg-geom(bg-mountain-full, 100%);
+  background-position: 0 0;
 
   .tickets-wrapper {
     @include Flex(row, center, center);
@@ -26,6 +30,26 @@
               &:nth-of-type(#{$index}) {
                 @include diamond();
               }
+            }
+          }
+        }
+      }
+      &.selected-1 {
+        & ~ .control-panel {
+          .arrow:last-of-type {
+            opacity: 0.4;
+            &:hover {
+              cursor: default;
+            }
+          }
+        }
+      }
+      &.selected-#{$numTickets} {
+        & ~ .control-panel {
+          .arrow:first-of-type {
+            opacity: 0.4;
+            &:hover {
+              cursor: default;
             }
           }
         }

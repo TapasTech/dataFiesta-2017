@@ -33,9 +33,9 @@ mixin arrow(direction, move)
       each ticket in tickets
         .dot-unit
     .bar-info
-      +arrow('left', -1)
+      +arrow('left', 1)
       .info-wrapper
         .info-text
           .text.
             *购票说明：本项目为全国联网销售，与现场座位一一对应，采用【短信电子票】模式，请用户在购买流程中身份证一栏填写准确的手机号。请于演出当天，持官方通知短信，至演出现场换票入场。
-      +arrow('right', 1)
+      +arrow('right', -1)
