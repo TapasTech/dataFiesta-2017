@@ -35,6 +35,7 @@
     .content-bg {
       position: absolute;
       top: -7vw;
+      z-index: -1;
       width: 100vw;
       @include Flex(row, space-between, center);
       overflow: hidden;

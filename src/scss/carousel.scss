@@ -15,7 +15,7 @@
       white-space: nowrap;
       width: 100%;
       position: relative;
-      $period: 16s;
+      $period: 20s;
       &:nth-of-type(1) {
         @include carousel(right, -105%, 100%, $duration: $period);
         z-index: 10;

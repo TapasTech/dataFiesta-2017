@@ -5,6 +5,9 @@
 #contact {
   @include Flex(column, flex-start, center);
 
+  @include bg-geom(bg-bottom, 100%);
+  background-position: bottom;
+
   .slashes-wrapper {
     margin-bottom: 50px;
     @include slash-bar();
@@ -19,6 +22,10 @@
     .contact-unit {
       @include Flex(column, flex-start, center);
       margin-bottom: 40px;
+
+      &:last-of-type {
+        margin-bottom: 128px;
+      }
 
       .contact-title {
         font-size: 24px;

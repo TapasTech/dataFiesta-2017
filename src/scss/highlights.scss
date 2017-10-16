@@ -33,11 +33,31 @@ $section-width: 266px;
         .section-title {
           margin-left: -8px;
         }
+        .slashes-wrapper {
+          left: 254px;
+          top: 30px;
+        }
       }
+
+      &:nth-of-type(2) {
+        &:before {
+          content: '';
+          display: inline-block;
+          @include abs-locate-px(-100, 60);
+          @include bg-geom(diamond, 50%);
+        }
+      }
+
       &:nth-of-type(3) {
         height: 409px;
         .title {
           margin-left: 8px;
+        }
+        &:after {
+          content: '';
+          display: inline-block;
+          @include abs-locate-px(270, 290);
+          @include bg-geom(circle-magenta, 50%);
         }
       }
 
