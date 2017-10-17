@@ -113,17 +113,29 @@
 
       .info-wrapper {
         @include Flex(row, center, center);
-        margin: 0 80px 0 108px;
-        width: 540px;
-        height: 83px;
         border: 1px solid $border-grey;
+        @media #{$PC} {
+          margin: 0 80px 0 108px;
+          width: 540px;
+          height: 83px;
+        }
+        @media #{$mobile} {
+          margin-left: 20%;
+        }
 
         .info-text {
-          width: 420px;
+          @media #{$PC} {
+            width: 420px;
+            transform: translate(-96px, 0);
+          }
+          @media #{$mobile} {
+            transform: translate(-46px, 0);
+            margin: 16px;
+          }
           padding: 4px 0;
-          transform: translate(-96px, 0);
           @include bg-black();
           font-size: 12px;
+
           .text {
             opacity: 0.7;
           }

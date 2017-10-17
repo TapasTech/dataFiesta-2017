@@ -169,6 +169,10 @@
         .time {
           display: inline-block;
           width: 30%;
+          @media #{$mobile} {
+            min-width: 96px;
+            //flex-shrink: 0;
+          }
           flex-shrink: 0;
           padding-right: 12px;
           text-align: end;
@@ -272,10 +276,16 @@
 
         .rhapsody-unit-wrapper {
           position: relative;
-          width: 418px;
 
-          &:not(:last-of-type) {
-            border-right: 1px solid rgba(255, 255, 255, 0.40);
+          @media #{$PC} {
+            width: 418px;
+            &:not(:last-of-type) {
+              border-right: 1px solid rgba(255, 255, 255, 0.40);
+            }
+          }
+          @media #{$mobile} {
+            width: 100%;
+            max-width: 100%;
           }
 
           &:not(:first-of-type) {
@@ -300,7 +310,9 @@
 
           .rhapsody-unit {
             @include Flex(column, flex-start, center);
-            width: 418px;
+            @media #{$PC} {
+              width: 418px;
+            }
             margin-top: -29px;
             .tag {
               position: relative;
@@ -309,7 +321,6 @@
               }
               @Media #{$mobile} {
                 left: -39px;
-                //top: 8px;
               }
               z-index: 10;
               transform: translate(-56px, 10px);

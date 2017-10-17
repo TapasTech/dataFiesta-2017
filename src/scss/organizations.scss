@@ -14,7 +14,12 @@ $wrapper-width: 1086px;
     .section-title {
       text-align: center;
       margin-bottom: 40px;
-      font-size: 36px;
+      @media #{$PC} {
+        font-size: 36px;
+      }
+      @media #{$mobile} {
+        font-size: 28px;
+      }
       @include Underline(white);
     }
 

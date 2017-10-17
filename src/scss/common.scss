@@ -1,5 +1,12 @@
 @import '_variables';
 @import '_mixins';
+@import '_utils';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   background-color: black;
@@ -29,12 +36,6 @@ body {
     }
   }
 
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 a {
