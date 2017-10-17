@@ -46,17 +46,34 @@
         background-position: 0 85%;
 
         .agenda-unit {
+          @media #{$mobile} {
+            @include Flex(column, flex-start, center);
+          }
           .time {
-            width: 50%;
             line-height: 51px;
+            @media #{$PC} {
+              width: 50%;
+            }
+            @media #{$mobile} {
+              text-align: center;
+            }
           }
           .program {
-            width: 50%;
+            @media #{$PC} {
+              width: 50%;
+            }
+            @media #{$mobile} {
+              width: 92%;
+              text-align: center;
+              margin: 0 4%;
+            }
             .content {
               padding: 12px 16px;
               border: 1px solid rgba(255, 255, 255, 0.40);
               background-color: $bg-black;
-
+              @media #{$mobile} {
+                max-width: 100%;
+              }
               .person-unit {
                 background: $bg-black;
                 .info-wrapper {
@@ -75,17 +92,28 @@
             .content {
               padding-bottom: 50px;
               .people-wrapper {
-                @include Flex(row, space-between, flex-start);
-                width: 206px;
                 background: $bg-black;
-                transform: translate(-84%, 0);
                 white-space: nowrap;
                 overflow: visible;
+                @media #{$PC} {
+                  @include Flex(row, space-between, flex-start);
+                  width: 206px;
+                  transform: translate(-84%, 0);
+                }
+                @media #{$mobile} {
+                  @include Flex(row, center, flex-start);
+                }
+
                 .person-unit {
                   position: relative;
                   margin-top: 0 !important;
                   display: inline-block;
-                  margin-right: 20px;
+                  @media #{$PC} {
+                    margin-right: 20px;
+                  }
+                  @media #{$mobile} {
+                    //width: 50%;
+                  }
                   .avatar-wrapper {
                     .avatar {
                       position: static;
@@ -149,7 +177,9 @@
         }
         .program {
           display: inline-block;
-          width: 70%;
+          @media #{$PC} {
+            width: 70%;
+          }
           .content {
             display: inline-block;
             .type {
@@ -166,7 +196,9 @@
                 $gap-left: 36px;
                 .avatar-wrapper {
                   position: relative;
-                  left: -26px;
+                  @media #{$PC} {
+                    left: -26px;
+                  }
                   margin-right: -$gap-left;
                   .avatar {
                     $avatar-size: 146px;
@@ -221,6 +253,9 @@
 
       .slashes-wrapper {
         @include slash-bar($color: $border-grey);
+        @media #{$mobile} {
+          display: none;
+        }
         .separator {
           transform: translate(0, 4px);
           margin-bottom: 36px;
@@ -228,7 +263,12 @@
       }
 
       .rhapsodies {
-        @include Flex(row, center, flex-start);
+        @media #{$PC} {
+          @include Flex(row, center, flex-start);
+        }
+        @media #{$mobile} {
+          @include Flex(column, flex-start, center);
+        }
 
         .rhapsody-unit-wrapper {
           position: relative;
@@ -240,18 +280,21 @@
 
           &:not(:first-of-type) {
             .tag {
-              &:before {
-                content: '';
-                display: inline-block;
-                position: absolute;
-                height: 1px;
-                $length: 48px;
-                width: $length;
-                left: -$length;
-                top: 50%;
-                z-index: 1;
-                background-color: rgba(255, 255, 255, 0.40);
+              @media #{$PC} {
+                &:before {
+                  content: '';
+                  display: inline-block;
+                  position: absolute;
+                  height: 1px;
+                  $length: 48px;
+                  width: $length;
+                  left: -$length;
+                  top: 50%;
+                  z-index: 1;
+                  background-color: rgba(255, 255, 255, 0.40);
+                }
               }
+
             }
           }
 
@@ -261,7 +304,13 @@
             margin-top: -29px;
             .tag {
               position: relative;
-              left: -30px;
+              @media #{$PC} {
+                left: -30px;
+              }
+              @Media #{$mobile} {
+                left: -39px;
+                //top: 8px;
+              }
               z-index: 10;
               transform: translate(-56px, 10px);
               width: 152px;
