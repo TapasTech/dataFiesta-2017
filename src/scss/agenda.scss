@@ -4,6 +4,8 @@
 
 #agenda {
   //margin: 0 0 108px 0;
+  position: relative;
+  z-index: 0;
   .title-wrapper {
     margin: 0 auto 16px auto;
   }

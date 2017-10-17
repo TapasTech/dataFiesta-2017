@@ -4,34 +4,57 @@
 
 #carousel {
 
+  position: relative;
+  z-index: 1;
+
   .rows-wrapper {
+    position: relative;
     overflow: hidden;
-    padding-bottom: 184px;
     width: 100%;
-    height: 580px;
+
+    @media #{$PC} {
+      padding-bottom: 184px;
+      height: 580px;
+    }
+
+    @media #{$mobile} {
+      padding-bottom: 160px;
+    }
 
     .row-unit {
+      position: relative;
       overflow: visible;
       white-space: nowrap;
       width: 100%;
-      position: relative;
-      $period: 20s;
-      &:nth-of-type(1) {
-        @include carousel(right, -105%, 100%, $duration: $period);
-        z-index: 10;
+
+      @mixin carousel-group($num, $names, $posStart, $posEnd, $period, $delays) {
+        @for $i from 1 through $num {
+          &:nth-of-type(#{$i}) {
+            @include carousel(nth($names, $i), nth($posStart, $i), nth($posEnd, $i), $duration: $period, $delay: $period * nth($delays, $i));
+            z-index: 10 - $i;
+          }
+        }
       }
-      &:nth-of-type(2) {
-        @include carousel(left, 100%, -135%, $duration: $period, $delay: $period * 3 / 4);
-        z-index: 8;
+
+      // animation effects
+      $names: (right, left, right, left);
+      $delays: (0, 0.75, 0.5, 0.25);
+
+      @media #{$PC} {
+        $period: 20s;
+        $posStart: (-105%, 100%, -110%, 100%);
+        $posEnd: (100%, -135%, 105%, -100%);
+        @include carousel-group(4, $names, $posStart, $posEnd, $period, $delays)
       }
-      &:nth-of-type(3) {
-        @include carousel(right, -110%, 105%, $duration: $period, $delay: $period / 2);
-        z-index: 6;
+
+      @media #{$mobile} {
+        $period: 8s;
+        $posStart: (-105%, 100%, -110%, 100%);
+        $posEnd: (100%, -135%, 105%, -100%);
+        @include carousel-group(4, $names, $posStart, $posEnd, $period, $delays)
       }
-      &:nth-of-type(4) {
-        @include carousel(left, 100%, -100%, $duration: $period, $delay: $period / 4);
-        z-index: 4;
-      }
+
+
       &:hover, &.paused {
         animation-play-state: paused;
       }
@@ -45,19 +68,32 @@
           .type {
             width: 32px;
             white-space: normal;
+            font-size: 16px;
+            @media #{$mobile} {
+              font-size: 14px;
+            }
           }
           .name {
             font-size: 72px;
+            @media #{$mobile} {
+              font-size: 52px;
+            }
           }
         }
         .detail-wrapper {
           display: none;
+          z-index: 10;
+
           @include abs-locate(80%, 70%);
           &.move-left {
             @include abs-locate(-280px, 70%);
+            @media #{$mobile} {
+              @include abs-locate(-180px, 75%);
+            }
           }
-          z-index: 10;
+
           border: 2px solid $color-cyan;
+          @include bg-black();
           .text-wrapper {
             @include Flex(column, space-between, flex-start);
             width: 220px;
@@ -80,6 +116,7 @@
             }
           }
           .avatar {
+            margin: auto;
             width: 168px;
             height: 168px;
             @include bg-img();
@@ -98,6 +135,9 @@
           }
           .detail-wrapper {
             @include Flex(row, space-between, stretch);
+            @media #{$mobile} {
+              @include Flex(column, flex-start, stretch);
+            }
           }
         }
       }
