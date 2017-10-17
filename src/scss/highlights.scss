@@ -10,23 +10,21 @@ $section-width: 266px;
   background-position: 0 95%;
 
   .content-wrapper {
-    @media #{$PC} {
-      @include bg-geom(bg-highlights, 100%);
-    }
-    background-size: 27%;
-    background-position: top;
     margin: 46px auto;
 
     @media #{$PC} {
+      @include bg-geom(bg-highlights, 100%);
+      background-size: 27%;
+      background-position: top;
       @include Flex(column wrap, flext-start, space-between);
       align-content: space-between;
       flex: 0;
       height: 1000px;
       max-width: 1048px;
     }
+
     @media #{$mobile} {
-      @include Flex(column nowrap, flex-start, flex-start);
-      padding-left: 18px;
+      @include Flex(column nowrap, flex-start, center);
     }
 
 
@@ -38,6 +36,10 @@ $section-width: 266px;
       height: 259px;
       margin-bottom: 42px;
       border: 1px solid $border-grey;
+
+      @media #{$mobile} {
+        left: -8px;
+      }
 
       &:first-of-type {
         .section-title {
@@ -84,6 +86,9 @@ $section-width: 266px;
       &:last-of-type {
         height: 400px;
         border-bottom: none;
+        @media #{$mobile} {
+          margin-bottom: 200px;
+        }
         .inner-wrapper {
           .section-content {
             margin-top: 0;
