@@ -3,6 +3,7 @@
 @import 'variables';
 
 #tickets {
+  position: relative;
   margin-bottom: 120px;
   padding-top: 108px;
   overflow: hidden;
@@ -11,15 +12,30 @@
   background-position: 0 0;
 
   .tickets-wrapper {
-    @include Flex(row, center, center);
+
+    @media #{$PC} {
+      @include Flex(row, center, center);
+    }
+    @media #{$mobile} {
+      @include Flex(row, center, center);
+      height: 500px;
+    }
+
     margin: 43px 0 56px 0;
+
     $numTickets: 2;
     @for $index from 1 through $numTickets {
       &.selected-#{$index} {
         .ticket-unit {
+          @media #{$mobile} {
+            transform: translateX( -$index * 100% + 150%) scale(0.715) rotate(90deg);
+          }
           transform: translateX((($numTickets + 1)/2 - $index) * 100%);
           &:not(.selected) {
             filter: grayscale(70%) brightness(0.5);
+            @media #{$mobile} {
+              transform: translateX( $index * (36%) - 54%) scale(0.64) rotate(90deg);
+            }
             transform: translate((($numTickets + 1)/2 - $index) * 100%, 20px) scale(0.9);
           }
         }
@@ -59,6 +75,7 @@
     .ticket-unit {
       position: relative;
       transition-duration: 1000ms;
+
       .image {
         @include bg-img();
         background-size: contain;
@@ -118,6 +135,17 @@
         width: $arrow-size;
         height: $arrow-size * 1.5;
         @include Flex(row, center, center);
+
+        @media #{$mobile} {
+          position: absolute;
+          top: 50%;
+          &:first-of-type {
+            left: 3%;
+          }
+          &:last-of-type {
+            right: 3%;
+          }
+        }
 
         .arrow-unit {
           &:after {

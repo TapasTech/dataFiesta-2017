@@ -19,6 +19,15 @@ $(function () {
       $($ticketUnits[nextTicketIndex - 1]).addClass('selected');
       prevTicketIndex = nextTicketIndex;
     }
+  });
+  
+  $ticketUnits.on(CLICK, function(e) {
+    const url = $(this).find('a').attr('href');
+    window.open(url);
+  });
+  
+  $ticketUnits.find('a').on(CLICK, function(e) {
+    e.preventDefault();
   })
   
 });
