@@ -8,8 +8,10 @@
   padding-top: 108px;
   overflow: hidden;
 
-  @include bg-geom(bg-mountain-full, 100%);
-  background-position: 0 0;
+  @media #{$PC} {
+    @include bg-geom(bg-mountain-full, 100%);
+    background-position: 0 0;
+  }
 
   .tickets-wrapper {
 
