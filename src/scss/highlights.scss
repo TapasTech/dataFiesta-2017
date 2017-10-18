@@ -6,8 +6,11 @@ $section-width: 266px;
 
 #highlights {
 
-  @include bg-geom(bg-mountain-full, 100%);
-  background-position: 0 95%;
+  @media #{$PC} {
+    @include bg-geom(bg-mountain-full, 100%);
+    background-position: 0 95%;
+  }
+
 
   .content-wrapper {
     margin: 46px auto;
@@ -26,7 +29,6 @@ $section-width: 266px;
     @media #{$mobile} {
       @include Flex(column nowrap, flex-start, center);
     }
-
 
     .unit-wrapper {
       position: relative;
@@ -66,13 +68,15 @@ $section-width: 266px;
           margin-left: 8px;
         }
         &:after {
-          content: '';
-          display: inline-block;
-          @include abs-locate-px(270, 290);
-          @include bg-geom(circle-magenta, 50%);
+          @media #{$PC} {
+            content: '';
+            display: inline-block;
+            @include abs-locate-px(270, 290);
+            @include bg-geom(circle-magenta, 50%);
+          }
+
         }
       }
-
       &:nth-of-type(n+2) {
         .section-content {
           width: 348px;
@@ -83,6 +87,7 @@ $section-width: 266px;
           width: 308px;
         }
       }
+
       &:last-of-type {
         height: 400px;
         border-bottom: none;
@@ -132,7 +137,12 @@ $section-width: 266px;
         }
 
         .section-content {
-          width: 324px;
+          @media #{$PC} {
+            width: 324px;
+          }
+          @media #{$mobile} {
+            width: 110%;
+          }
           margin: -26px 0 0 0;
           padding: 16px 0 4px 0;
           background: $bg-black;
@@ -163,6 +173,9 @@ $section-width: 266px;
     }
 
     .slashes-wrapper {
+      @media #{$mobile} {
+        display: none;
+      }
       position: absolute;
       @include slash-bar();
       @include abs-locate-px(-54, 480);
