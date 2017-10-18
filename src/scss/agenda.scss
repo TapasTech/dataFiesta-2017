@@ -199,6 +199,13 @@
               @media #{$iphone5} {
                 margin-left: -24px;
               }
+              &:not(.brief) {
+                .info-wrapper {
+                  @media #{$mobile} {
+                    margin-left: -24px;
+                  }
+                }
+              }
               .person-unit {
                 position: relative;
                 @include Flex(row, flex-start, flex-end);
@@ -236,7 +243,6 @@
                   white-space: nowrap;
                   z-index: 10;
                   @media #{$mobile} {
-                    margin-left: -24px;
                     max-width: 120px;
                     * {
                       white-space: normal;
