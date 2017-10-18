@@ -122,7 +122,9 @@
                     }
                   }
                   .info-wrapper {
-                    margin-left: 24px;
+                    @media #{$PC} {
+                      margin-left: 24px;
+                    }
                     font-size: 16px;
                     width: 160px;
                     white-space: normal;
@@ -202,8 +204,8 @@
                   position: relative;
                   @media #{$PC} {
                     left: -26px;
+                    margin-right: -$gap-left;
                   }
-                  margin-right: -$gap-left;
                   .avatar {
                     $avatar-size: 146px;
                     width: $avatar-size;
@@ -226,8 +228,10 @@
                 .info-wrapper {
                   white-space: nowrap;
                   z-index: 10;
+                  @media #{$mobile} {
+                    margin-left: -24px;
+                  }
                   &.static {
-                    //margin-left: $gap-left;
                     margin-bottom: -14px;
                     .name, .job {
                       display: inline-block;
@@ -286,6 +290,12 @@
           @media #{$mobile} {
             width: 100%;
             max-width: 100%;
+          }
+
+          &:first-of-type {
+            @media #{$mobile} {
+              margin-top: 20px;
+            }
           }
 
           &:not(:first-of-type) {
