@@ -196,6 +196,9 @@
               color: $color-cyan;
             }
             .people-wrapper {
+              @media #{$iphone5} {
+                margin-left: -24px;
+              }
               .person-unit {
                 position: relative;
                 @include Flex(row, flex-start, flex-end);
@@ -332,6 +335,38 @@
             @media #{$PC} {
               width: 418px;
             }
+
+            /*@media #{$mobile} {
+              .agenda-unit {
+                .program {
+                  .content {
+                    .people-wrapper {
+                      .person-unit {
+                        $gap: 100px;
+                        &:nth-of-type(2n+1) {
+                          margin-bottom: $gap/2;
+                          position: relative;
+                          left: -$gap;
+                        }
+                        &:nth-of-type(2n) {
+                          position: relative;
+                          background: transparent;
+                          height: 0;
+                          left: $gap/3;
+                          top: $gap;
+                        }
+                        .avatar-wrapper {
+                          .avatar {
+                            background-color: transparent;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }*/
+
             margin-top: -29px;
             .tag {
               position: relative;
