@@ -7,6 +7,36 @@
   position: relative;
   z-index: 1;
 
+  .detail-popup {
+    @include abs-locate(50%, 50%);
+    transform: translate(-50%, -50%);
+
+    z-index: 20;
+    @media #{$mobile} {
+      @include Flex(column, flex-start, stretch);
+    }
+    .detail-wrapper {
+      @include bg-black();
+      max-width: 240px;
+      border: 2px solid $color-cyan;
+      .text-wrapper {
+        padding: 14px;
+        color: #000;
+        background: #fff;
+        .type {
+          margin: 20px 0 12px 0;
+        }
+      }
+      .avatar {
+        width: 180px;
+        height: 180px;
+        margin: auto;
+        @include bg-img();
+      }
+    }
+
+  }
+
   .rows-wrapper {
     position: relative;
     overflow: hidden;
@@ -18,7 +48,8 @@
     }
 
     @media #{$mobile} {
-      padding-bottom: 160px;
+      padding-bottom: 100px;
+      margin-bottom: 0px;
     }
 
     .row-unit {
@@ -134,9 +165,11 @@
             color: $color-cyan;
           }
           .detail-wrapper {
-            @include Flex(row, space-between, stretch);
+            @media #{$PC} {
+              @include Flex(row, space-between, stretch);
+            }
             @media #{$mobile} {
-              @include Flex(column, flex-start, stretch);
+              //@include Flex(column, flex-start, stretch);
             }
           }
         }

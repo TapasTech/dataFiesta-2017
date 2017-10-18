@@ -29,17 +29,18 @@ include _common
   })
 
 mixin personUnit(person)
-  .person-unit
-    .brief-wrapper
-      .type=person.type
-      .name.pf-Medium=person.name
-    .detail-wrapper
-      .text-wrapper
-        .job=person.job
-        .type.pf-Medium=person.type
-        .title=person.title
-        .time=person.time
-      .avatar(style=`background-image: url(${imagePath}avatars/${person.name}.png)`)
+  - var {name, job, type, title, time} = person;
+    .person-unit(data-name=name, data-job=job, data-type=type, data-title=title, data-time=time,)
+      .brief-wrapper
+        .type=type
+        .name.pf-Medium=name
+      .detail-wrapper
+        .text-wrapper
+          .job=job
+          .type.pf-Medium=type
+          .title=title
+          .time=time
+        .avatar(style=`background-image: url(${imagePath}avatars/${name}.png)`)
 mixin personRow(start, end)
   .row-unit
     - for (var i = start; i < end; i++)
@@ -51,4 +52,11 @@ mixin personRow(start, end)
     +personRow(6, 13)
     +personRow(13, 19)
     +personRow(20, 26)
-
+    .detail-popup.mobile-only.hidden
+      .detail-wrapper
+        .text-wrapper
+          .job
+          .type.pf-Medium
+          .title
+          .time
+        .avatar
