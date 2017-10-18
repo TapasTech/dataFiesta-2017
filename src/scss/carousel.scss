@@ -56,7 +56,12 @@
       position: relative;
       overflow: visible;
       white-space: nowrap;
-      width: 100%;
+      @media #{$PC} {
+        width: 5000px;
+      }
+      @media #{$mobile} {
+        width: 3400px;
+      }
 
       @mixin carousel-group($num, $names, $posStart, $posEnd, $period, $delays) {
         @for $i from 1 through $num {
@@ -69,22 +74,12 @@
 
       // animation effects
       $names: (right, left, right, left);
-      $delays: (0, 0.75, 0.5, 0.25);
-
-      @media #{$PC} {
-        $period: 20s;
-        $posStart: (-105%, 100%, -110%, 100%);
-        $posEnd: (100%, -135%, 105%, -100%);
-        @include carousel-group(4, $names, $posStart, $posEnd, $period, $delays)
-      }
-
-      @media #{$mobile} {
-        $period: 8s;
-        $posStart: (-105%, 100%, -110%, 100%);
-        $posEnd: (100%, -135%, 105%, -100%);
-        @include carousel-group(4, $names, $posStart, $posEnd, $period, $delays)
-      }
-
+      $delays: (0, 0.3, 0.2, 0.1);
+      $period: 36s;
+      $screenSize: 100vw;
+      $posStart: (-100%, $screenSize, -100%, $screenSize);
+      $posEnd: ($screenSize, -100%, $screenSize, -100%);
+      @include carousel-group(4, $names, $posStart, $posEnd, $period, $delays);
 
       &:hover, &.paused {
         animation-play-state: paused;
@@ -167,9 +162,6 @@
           .detail-wrapper {
             @media #{$PC} {
               @include Flex(row, space-between, stretch);
-            }
-            @media #{$mobile} {
-              //@include Flex(column, flex-start, stretch);
             }
           }
         }
