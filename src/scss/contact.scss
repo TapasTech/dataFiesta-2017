@@ -19,6 +19,7 @@
   }
 
   .detail-wrapper {
+
     .contact-unit {
       @include Flex(column, flex-start, center);
       margin-bottom: 40px;
@@ -28,19 +29,22 @@
       }
 
       .contact-title {
-        font-size: 24px;
+        @include fz-pc-mob(24px, 20px);
         margin-bottom: 2px;
       }
 
       .contact-detail {
         text-align: center;
-
         &:before, &:after {
           margin: 0 14px;
           @include slash($transform: skew(-60deg));
         }
-
       }
+
+      .contact-detail, .contact-phone {
+        @include fz-pc-mob();
+      }
+
     }
 
   }

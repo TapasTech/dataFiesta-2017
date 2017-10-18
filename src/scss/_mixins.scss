@@ -54,3 +54,11 @@
   @include bg-img($url: #{$assets-url}bg/#{$name}#{$format}, $size: $size);
 }
 
+@mixin fz-pc-mob($pc: 16px, $mob: 12px) {
+  @media #{$PC} {
+    font-size: $pc;
+  }
+  @media #{$mobile} {
+    font-size: $mob;
+  }
+}

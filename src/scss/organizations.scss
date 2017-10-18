@@ -9,6 +9,10 @@ $wrapper-width: 1086px;
   max-width: $wrapper-width;
   margin: 0 auto 120px auto;
 
+  @media #{$mobile} {
+    margin-bottom: 0;
+  }
+
   .section-unit {
     @include Flex(column, flex-start, center);
     .section-title {
@@ -26,6 +30,10 @@ $wrapper-width: 1086px;
     .logos-wrapper {
       @include Flex(row wrap, center, flex-start);
       margin-bottom: 100px;
+
+      @media #{$mobile} {
+        margin-bottom: 44px;
+      }
 
       .logo-unit {
         width: $wrapper-width/6;
