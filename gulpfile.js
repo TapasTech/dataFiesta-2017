@@ -42,14 +42,16 @@ let cssOutputStyle = isProd ? 'compressed' : 'expanded';
 gulp.task('clean', () => del(DIST));
 
 gulp.task('scss', () => {
-  let stream = gulp.src('src/scss/index.scss')
-    .pipe(sourceMaps.init())
-    .pipe(sass({outputStyle: cssOutputStyle}))
-    .on('error', sass.logError)
-    .pipe(sourceMaps.write());
-  if (isProd) {
-    stream = stream
-    .pipe(postCss([autoPrefix, cssNano]));
+  let stream = gulp.src('src/scss/index.scss');
+  if (!isProd) {
+    stream = stream.pipe(sourceMaps.init())
+      .pipe(sass({outputStyle: cssOutputStyle}))
+      .on('error', sass.logError)
+      .pipe(sourceMaps.write());
+  } else {
+    stream = stream.pipe(sass({outputStyle: cssOutputStyle}))
+      .on('error', sass.logError)
+      .pipe(postCss([autoPrefix, cssNano]));
   }
   stream = stream
     .pipe(rename('styles.css'))
